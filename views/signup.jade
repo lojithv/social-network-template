@@ -1,0 +1,19 @@
+extends layout
+
+block page
+  - var menu = 'signup'
+block content
+  .col-md-4.col-md-offset-4
+    h2 Signup
+    a(href='/auth/twitter') Signup with Twitter
+    div= error
+    div
+      form(action="/signup", method="POST")
+        p
+          input.form-control(name="name", type="text", placeholder="Name")
+        p
+          input.form-control(name="email", type="text", placeholder="hi@example.com")
+        p
+          input.form-control(name="password", type="password", placeholder="***")
+        p
+          button.btn.btn-lg.btn-primary.btn-block(type="submit") Signup

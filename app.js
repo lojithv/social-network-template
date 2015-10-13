@@ -17,7 +17,6 @@ var express = require('express'),
 
 var app = express();
 app.locals.appTitle = 'The Network';
-
 //Expose collections to request handlers
 app.use(function(req, res, next) {
 	if (!models.User) {

@@ -1,6 +1,6 @@
 # The Network
 
- A Node.js template for creating a social network. 
+A Node.js template for creating a social application. 
 
 # Getting started
 
@@ -11,3 +11,5 @@
 ### Launch server
 
 ### Test
+
+# Credits

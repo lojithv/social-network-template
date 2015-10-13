@@ -3,12 +3,9 @@ extends layout
 block page 
   - var menu = 'index'
 block content
-  if (users.length === 0)
-    | There's no published content yet. 
-    a(href="/login") Log in
-    |  to post and publish.
-  else 
-    each user, index in users
-      div
-        h2
-          a(href="/#{user.name}")= user.name
+  include includes/header
+  section.center.bg.hero-bg.dark-theme.blue-gradient
+    div.container.text-center
+      div.center-page.col-sm-10.col-sm-offset-1
+        h1.thin= appTitle
+        p.description A Node.js template for building a social app

@@ -68,7 +68,7 @@ describe('Users', function () {
     });
   });
 
-
+  
   it('adds new user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
@@ -87,7 +87,7 @@ describe('Users', function () {
       done();
     });
   });
-  /*
+
   it('checks duplicate user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
@@ -135,7 +135,7 @@ describe('Users', function () {
         done();
       });
   });
-*/
+
   after(function () {
     shutdown();
   });

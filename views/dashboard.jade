@@ -4,7 +4,7 @@ block content
 	include includes/header
 	.section.settings.light-theme
 		.container
-			form(method="PUT", action="/:user", class="form")
+			form(method="PUT", action="/user", class="form")
 				h2 Settings
 				// ACCOUNT SETTINGS
 				.settings-section
@@ -19,7 +19,55 @@ block content
 				// NOTIFICATION SETTINGS
 				.settings-section
 					h4 Notifications
-				
+					.row
+						.toggle.switch.col-sm-3
+							input(id="switch", class="switch-input", type="checkbox")
+							label(for="switch", class="switch-bg")
+								span.switch-toggler
+						p.col-sm-9 email me when my posts are marked as favorites
+					.row
+						.toggle.switch.col-sm-3
+							input(id="switch2", class="switch-input", type="checkbox")
+							label(for="switch2", class="switch-bg")
+								span.switch-toggler
+						p.col-sm-9 email me when I'm mentioned
+					.row
+						.toggle.switch.col-sm-3
+							input(id="switch3", class="switch-input", type="checkbox")
+							label(for="switch3", class="switch-bg")
+								span.switch-toggler
+						p.col-sm-9 email me when I get a reply
+					.row
+						.toggle.switch.col-sm-3
+							input(id="switch4", class="switch-input", type="checkbox")
+							label(for="switch4", class="switch-bg")
+								span.switch-toggler
+						p.col-sm-9 email me when someone follows me
 				// SECURITY SETTINGS
 				.settings-section
 					h4 Security
+					.row
+						.toggle.radio-switch.col-sm-2
+							input(id="radio", class="radio-input", type="checkbox")
+							label(for="radio", class="radio-bg")
+								span.radio-toggler.fa.fa-circle
+						p.col-sm-10 allow anyone to tag me
+					.row
+						.toggle.radio-switch.col-sm-2
+							input(id="radio2", class="radio-input", type="checkbox")
+							label(for="radio2", class="radio-bg")
+								span.radio-toggler.fa.fa-circle
+						p.col-sm-10 add a location to my posts
+					.row
+						.toggle.radio-switch.col-sm-2
+							input(id="radio3", class="radio-input", type="checkbox")
+							label(for="radio3", class="radio-bg")
+								span.radio-toggler.fa.fa-circle
+						p.col-sm-10 let others find me by email address
+				// SUBMIT 
+				.settings-section
+					input(type="submit", value="Save", name="update", class="pull-left button button-default button-dark")
+					input(type="submit", value="Delete account", name="delete", class="pull-right button button-default button-dark button-danger")
+
+
+

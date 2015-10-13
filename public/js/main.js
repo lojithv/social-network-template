@@ -1,4 +1,4 @@
 $(document).ready(function () {
 	$('.center-page').vAlign();
-	$('.menu').scrollFadeIn({offset:50});
+	//$('.menu').scrollFadeIn({offset:50});
 });

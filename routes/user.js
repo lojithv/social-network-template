@@ -35,7 +35,7 @@ exports.show = function (req, res, next) {
 }
 
 exports.showAll = function (req, res, next) {
-  res.send('respond with a resource');
+  res.render('userlist')
 }
 
 exports.signup = function (req, res, next) {

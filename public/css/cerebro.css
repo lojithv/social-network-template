@@ -522,7 +522,13 @@ p {
 /* =================================
   CONTACT FORM
 ==================================== */
+form {
+  padding: 2em 0;
+  border-radius: 2px;
+}
+
 .form input[type="text"],
+.form input[type="password"],
 .form textarea {
   width: 100%;
   padding: .7em;
@@ -537,7 +543,6 @@ p {
 .form {
   margin: 2em auto;
   max-width: 450px;
-  display: inline-block;
 }
 
 .form label {

@@ -1,6 +1,25 @@
 extends layout
 
-block page
-  - var menu = 'admin'
 block content
-  h2= 'Welcome ' + user.name
+	include includes/header
+	.section.settings.light-theme
+		.container
+			form(method="PUT", action="/:user", class="form")
+				h2 Settings
+				// ACCOUNT SETTINGS
+				.settings-section
+					h4 Account
+					.form-group
+						label Username
+						input(type="text", name="name", placeholder=user.name)
+					.form-group
+						label Email
+						input(type="text", name="email", placeholder=user.email)
+				
+				// NOTIFICATION SETTINGS
+				.settings-section
+					h4 Notifications
+				
+				// SECURITY SETTINGS
+				.settings-section
+					h4 Security

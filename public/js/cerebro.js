@@ -409,7 +409,7 @@ var vimeo = (function () {
  * ========================================================
  * Toggles the transparent class on an element when scrolling 
  * past a specified point.
- * Example: $('.menu').scrollFade();
+ * Example: $('.menu').scrollFadeIn();
  * ======================================================== */
 
 (function ($) {

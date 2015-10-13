@@ -1,10 +1,65 @@
-.menu-logo {
-	font-size: 3em;
+/* =========================
+	SETTINGS
+============================== */
+.settings h4 {
+	text-transform: uppercase;
+	font-size: 1em;
+	color: #697074;
+	
 }
 
-.form {
-	margin-top: 10%;
+.settings p {
+	display: inline-block;/*inlines overflow*/
+	font-family: proxima-nova;
+	color: #697074;
+	width: 68%;
+	margin: 0 0 0 5%;
+	/*helps when paragraph is more
+	than one line */
+	vertical-align: middle; 
+	
 }
-.border {
-	border: 1px solid green;
+
+.btn-change-photo {
+	color: #b5bdc1;
+	border: 1px solid #b5bdc1;
+	padding: .2em 0;
+	width: 6em;
 }
+
+.settings .photo {
+	width: 6em;
+}
+
+.settings .photo img {
+	width: 100%;
+}
+.settings-avatar {
+	display: inline;
+	float: left;
+}
+
+
+.input-group span {
+	position: absolute;
+	line-height: 2.5em;
+	padding: 0 1em;
+	color: #b5bdc1;
+	
+}
+
+.settings-section {
+	text-align: left;
+	padding-top: 3em;
+	padding-bottom: 3em;
+	border-bottom: 1px solid #b5bdc1;
+}
+
+.btn-save {
+	background-color: #00b286;
+	color: #fff;
+	font-family: proxima-nova;
+	padding: 1em 1em;
+	border-radius: 2px;
+}
+

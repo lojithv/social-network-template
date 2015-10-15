@@ -16,7 +16,9 @@ var userSchema = new mongoose.Schema({
   admin: {
     type: Boolean,
     default: true
-  }
+  },
+  thumbnail: String,
+  avatar: String
 });
 
 module.exports = mongoose.model('User', userSchema);

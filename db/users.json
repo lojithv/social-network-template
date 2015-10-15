@@ -2,11 +2,15 @@
   "name": "Alberta",
   "email": "alberta@example.com",
   "admin": true,
-  "password": "alberta"
+  "password": "alberta",
+  "thumbnail": "img/girl-thumb.png",
+  "avatar": "img/girl-avatar.jpg"
 },
 {
   "name": "Henri",
   "email": "henri@example.com",
   "admin": true,
-  "password": "henri"
+  "password": "henri",
+  "thumbnail": "img/boy-thumb.png",
+  "avatar": "img/boy-avatar.jpg"
 }]

@@ -28,14 +28,17 @@ exports.del = function (req, res, next) {
 
 exports.show = function (req, res, next) {
   if (!req.params.user) return next(new Error('No user'));
-  req.models.User.findOne({name: req.params.user}, function (error, user) {
+  req.models.User.findOne({name: req.params.user}, function (error, profile) {
     if (error) return next(error);
-    res.render('user', user);
+    res.render('profile', {user: req.session.user, profile: profile});
   });
 }
 
 exports.showAll = function (req, res, next) {
-  res.render('userlist')
+  req.models.User.find({}, function (error, users) {
+    if (error) return next(error);
+    res.render('userlist', {user: req.session.user, users: users})
+  });
 }
 
 exports.signup = function (req, res, next) {

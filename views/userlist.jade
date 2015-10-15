@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	include includes/header
+	.page-header.text-center.bg.dark-theme.electric-gradient
+		.container
+			h1.light Users
+	.section.light-theme
+		.container
+			.row
+				each item in users
+					.col-sm-6.col-md-4
+						div
+							a(href= '/' + item.name)
+								if item.thumbnail
+									img(src= item.thumbnail class="thumb")
+								else
+									img(src="img/square.png" class="thumb")
+							.caption
+								h3= item.name
+								

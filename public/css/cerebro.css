@@ -134,7 +134,7 @@ p {
 }
 
 .section {
-  text-align: center;
+  /*text-align: center;*/
   padding: 6em 0;
   position: relative;
   border-bottom: 1px solid #E9E9E9;

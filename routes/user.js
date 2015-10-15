@@ -72,7 +72,7 @@ exports.authenticate = function(req, res, next) {
 exports.showDashboard = function(req, res, next) {
 	req.models.User.findOne({email:req.session.user.email}, function(error, user) {
     	if (error) return next(error);
-    	res.render('dashboard', {user:user});
+    	res.render('dashboard', {user: user});
     	//res.send({user:req.session.user.name});
   });
 }

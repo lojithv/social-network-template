@@ -124,3 +124,30 @@
 	background-color: #e31837;
 	border: 2px solid #e31837;
 }
+
+/* =================================
+	MENU
+==================================== */
+
+.menu-avatar {
+	height: 2.5em;
+	border-radius: 2px;
+	margin-right: .5em;
+}
+
+.dropdown ul li{
+	margin: 0;
+	line-height: 100%;
+	display: block;
+	color: #697074;
+}
+
+.dropdown-menu {
+	left: -100px;
+	min-width: 100px;
+}
+
+.dropdown-menu.light-theme li a{
+	color: #697074;
+}
+ 

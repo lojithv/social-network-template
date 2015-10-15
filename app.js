@@ -35,10 +35,14 @@ app.use(favicon(path.join('public', 'favicon.ico')));
 //Express middleware configuration
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: false}));
+//app.use(cookieParser('3CCC4ACD-6ED1-4844-9217-82131BDCB239'));
 //exposes the res.session object in each request
 //handler and stores data
-app.use(session({secret: '2C44774A-D649-4D44-9535-46E296EF984F'}));
+app.use(session({
+	secret: '2C44774A-D649-4D44-9535-46E296EF984F',
+	resave: false,
+	saveUninitialized: false}));
 app.use(methodOverride());
 
 //authentication middleware
@@ -58,7 +62,7 @@ var authorize = function (req, res, next) {
 	}
 };
 
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
 	app.use(errorHandler());
 }
 
@@ -86,6 +90,7 @@ var boot = function () {
 		console.info('Express server listening on port', app.get('port'));
 	});
 };
+
 var shutdown = function () {
 	server.close();
 };

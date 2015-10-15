@@ -18,15 +18,6 @@ describe('Users', function () {
     });
   });
 
-  it('gets user list', function (done) {
-    request.get('http://localhost:' + port).end(function(err, res){
-        for (var i = 0; i < seedUsers.length; i++) {
-          expect(res.text).to.contain(seedUsers[i].name);
-        }
-        done();
-    });
-  });
-
   it('gets login route', function (done) {
     request
       .get('http://localhost:' + port + '/login')
@@ -50,6 +41,13 @@ describe('Users', function () {
 
   });
 
+  it('gets home page route logged in',function (done){
+    request.get('http://localhost:' + port).end(function(err, res){
+        expect(res.status).to.equal(200);
+        done();
+    });
+  });
+
   it('logs out user', function (done) {
     request.get('http://localhost:' + port + '/logout')
       .end(function(err, res){
@@ -68,7 +66,7 @@ describe('Users', function () {
     });
   });
 
-  
+
   it('adds new user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
@@ -87,7 +85,7 @@ describe('Users', function () {
       done();
     });
   });
-
+  /*
   it('checks duplicate user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
@@ -136,6 +134,15 @@ describe('Users', function () {
       });
   });
 
+  it('gets user list', function (done) {
+    request.get('http://localhost:' + port).end(function(err, res){
+        for (var i = 0; i < seedUsers.length; i++) {
+          expect(res.text).to.contain(seedUsers[i].name);
+        }
+        done();
+    });
+  });
+*/
   after(function () {
     shutdown();
   });

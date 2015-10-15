@@ -21,6 +21,7 @@
     "mongoose": "^4.1.10",
     "mongoskin": "^2.0.0",
     "morgan": "^1.6.1",
+    "serve-favicon": "^2.3.0",
     "stylus": "^0.52.4",
     "validator": "^4.1.0"
   },

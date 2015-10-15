@@ -755,16 +755,16 @@ elements absolutely */
 .footer.dark-theme li a {
   color: #fff;
 }
-
+/*
 .menu ul li,
 .footer ul li {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
+*/
 .menu ul,
 .footer ul {
-  padding: 0;
+/*  padding: 0;*/
   list-style-type: none;
 }
 

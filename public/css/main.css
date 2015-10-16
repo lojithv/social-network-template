@@ -146,6 +146,9 @@
 	left: -100px;
 	min-width: 100px;
 }
+ul.dropdown-menu{
+	padding: 1em 0;
+}
 
 .dropdown-menu.light-theme li a{
 	color: #697074;

@@ -9,9 +9,13 @@ exports.add = function (req, res, next) {
     email: req.body.email,
     password: req.body.password
   }
+  // Check for duplicate username
+  req.models.User.count({name: user.name}, function (error, count) {
+      if (count > 0) return res.render('signup', {error: 'Username already exists'});
+  });
 
   req.models.User.create(user, function (error, user) {
-    if (error) return next(error);
+    if (error) return res.render('signup', {error: error});
     req.session.user = user;
     req.session.admin = user.admin
     res.redirect('/dashboard');
@@ -19,11 +23,22 @@ exports.add = function (req, res, next) {
 }
 
 exports.update = function (req, res, next) {
+  var name = req.body.name;
+  var email = req.body.email;
+  req.models.User.where({name: req.session.user.name})
+  .update({$set: {name: name, email: email}});
 
 }
 
 exports.del = function (req, res, next) {
-
+  if (!req.params.id) return next(new Error('No user ID.'));
+  console.log(req.params.id);
+  req.models.User.findOneAndRemove({name:req.params.id}, function (error, user) {
+    if(!user) return next(new Error('user not found'));
+    if (error) return next(error);
+    req.session.destroy();
+    res.redirect('/');
+  });
 }
 
 exports.show = function (req, res, next) {
@@ -52,7 +67,7 @@ exports.login = function(req, res, next) {
 exports.logout = function(req, res, next) {
 	//clear the session
 	req.session.destroy();
-  	res.redirect('/');
+  res.redirect('/');
 };
 
 exports.authenticate = function(req, res, next) {

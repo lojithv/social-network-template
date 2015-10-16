@@ -77,7 +77,7 @@ app.get('/dashboard', authorize, routes.user.showDashboard);
 app.get('/users', routes.user.showAll);
 app.get('/:user', routes.user.show);
 app.put('/:user', routes.user.update);
-app.delete('/:user', routes.user.del);
+app.delete('/api/users/:id', routes.user.del);
 
 app.all('*', function (req, res) {
 	res.sendStatus(404);

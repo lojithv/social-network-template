@@ -1,10 +1,25 @@
 extends layout
 
 block content
+	- var menu = 'index'
 	include includes/header
-	section.center.bg.hero-bg.dark-theme.electric-gradient
-		container.text-center
+	.page-header.bg.dark-theme.electric-gradient
+		.container.text-center
 			//div.img-overlay
-			div.center-page.col-sm-10.col-sm-offset-1
+			div.col-sm-10.col-sm-offset-1
 				h1.thin= appTitle
 				p.description A Node.js template for building social apps
+	.section.light-theme
+		.container
+			.row
+				each item in users
+					.col-sm-6.col-md-4
+						div
+							a(href= '/' + item.name)
+								if item.thumbnail
+									img(src= item.thumbnail class="thumb")
+								else
+									img(src="img/square.png" class="thumb")
+							.caption
+								h3.light= item.name
+								

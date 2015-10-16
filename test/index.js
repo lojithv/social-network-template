@@ -102,14 +102,14 @@ describe('Users', function () {
       done();
     });
   });
-  /*
+  
   it('checks duplicate user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
       .send({name: "test", email: "test@example.com", password: "test"})
       .end(function (err, res) {
-        expect(err).to.not.equal(null);
-        expect(res.status).to.equal(401);
+        //console.log(res);
+        expect(res.text).to.contain('Username already exists');
         done();
       });
 
@@ -118,8 +118,9 @@ describe('Users', function () {
   it('updates user', function (done) {
     request
       .put('http://localhost:' + port + '/test')
-      .send({name: "testing"})
+      .send({name: "testing", email: 'testing@example.com'})
       .end(function (err, res) {
+        console.log(res.body);
         expect(err).to.equal(null);
         done();
       });
@@ -136,8 +137,10 @@ describe('Users', function () {
 
   it('deletes user', function (done) {
     request
-      .delete('http://localhost:' + port + '/testing')
+      .del('http://localhost:' + port + '/users/api/test')
+      //.send({"destroy": true})
       .end(function (err, res) {
+        console.log(err);
         expect(err).to.equal(null);
         done();
       });
@@ -149,10 +152,10 @@ describe('Users', function () {
         expect(res.status).to.equal(404);
         done();
       });
+
   });
 
   
-*/
   after(function () {
     shutdown();
   });

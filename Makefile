@@ -7,7 +7,7 @@ db:
 	./db/seed.sh
 test:
 	clear
-
+	./db/seed.sh
 	echo Starting test *********************************************************
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \

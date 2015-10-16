@@ -1,13 +1,16 @@
 var mongoose = require('mongoose');
 var validator = require('validator');
 var userSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    set: function (value) {return value.trim().toLowerCase()},
+  },
   email: {
     type: String,
     required: true,
     set: function(value) {return value.trim().toLowerCase()},
     validate: [
-      function(email) {
+      function (email) {
         return validator.isEmail(email);
       }
     ]

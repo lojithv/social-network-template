@@ -8,7 +8,7 @@ $(document).ready(function () {
 		if (destroy) {
 			$.ajax({
 				type: 'DELETE',
-				url: '/api/users/' + id
+				url: '/' + id
 			});
 		}
 		else {
@@ -17,4 +17,15 @@ $(document).ready(function () {
 		
 	});
 
+	var btnSave = $('.save');
+/*
+	btnSave.click(function (e) {
+		//e.preventDefault();
+		console.log('save clicked');
+		$.ajax({
+			type: 'PUT',
+			url: $('form').attr('action')
+		});
+	});
+*/
 });

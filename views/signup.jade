@@ -6,13 +6,13 @@ block content
     .container
       .form
         a(href="/"): h2.menu-logo.thin The Network
-        form(method="POST", action="/signup" class="light-theme")
+        form(method="POST", action="signup" class="light-theme")
           .container-fluid
             .form-header
               p.lead Sign up
               p= error
             .form-group
-              input(type="text", name="name", placeholder="Username")
+              input(type="text", name="username", placeholder="Username")
             .form-group
               input(type="text", name="email", placeholder="Email address")
             .form-group

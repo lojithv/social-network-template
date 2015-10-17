@@ -4,19 +4,20 @@ block content
 	include includes/header
 	.section.settings.light-theme
 		.container
-			form(method="PUT", action="/" + user.name, class="form")
+			form(method="POST", action="/" + user.username, class="form")
 				h2 Settings
 				// ACCOUNT SETTINGS
 				.settings-section
 					h4 Account
 					.form-group
 						label Username
-						input(type="text", name="name", placeholder=user.name)
+						input(type="text", name="username", placeholder=user.username)
+				
 					.form-group
 						label Email
 						input(type="text", name="email", placeholder=user.email)
 					.form-group
-						input(type="submit", value="Save", name="submit", class="button button-default button-dark")
+						input(type="submit", value="submit", name="submit", class="button button-default button-dark save")
 				// NOTIFICATION SETTINGS
 				.settings-section
 					h4 Notifications
@@ -44,34 +45,34 @@ block content
 							label(for="switch4", class="switch-bg")
 								span.switch-toggler
 						p.col-sm-9 email me when someone follows me
-	
-				// SECURITY SETTINGS
-				.settings-section
-					h4 Security
-					.row
-						.toggle.radio-switch.col-sm-2
-							input(id="radio", class="radio-input", type="checkbox")
-							label(for="radio", class="radio-bg")
-								span.radio-toggler.fa.fa-circle
-						p.col-sm-10 allow anyone to tag me
-					.row
-						.toggle.radio-switch.col-sm-2
-							input(id="radio2", class="radio-input", type="checkbox")
-							label(for="radio2", class="radio-bg")
-								span.radio-toggler.fa.fa-circle
-						p.col-sm-10 add a location to my posts
-					.row
-						.toggle.radio-switch.col-sm-2
-							input(id="radio3", class="radio-input", type="checkbox")
-							label(for="radio3", class="radio-bg")
-								span.radio-toggler.fa.fa-circle
-						p.col-sm-10 let others find me by email address
-					
+
+					// SECURITY SETTINGS
+					.settings-section
+						h4 Security
+						.row
+							.toggle.radio-switch.col-sm-2
+								input(id="radio", class="radio-input", type="checkbox")
+								label(for="radio", class="radio-bg")
+									span.radio-toggler.fa.fa-circle
+							p.col-sm-10 allow anyone to tag me
+						.row
+							.toggle.radio-switch.col-sm-2
+								input(id="radio2", class="radio-input", type="checkbox")
+								label(for="radio2", class="radio-bg")
+									span.radio-toggler.fa.fa-circle
+							p.col-sm-10 add a location to my posts
+						.row
+							.toggle.radio-switch.col-sm-2
+								input(id="radio3", class="radio-input", type="checkbox")
+								label(for="radio3", class="radio-bg")
+									span.radio-toggler.fa.fa-circle
+							p.col-sm-10 let others find me by email address
+						
 				// DELETE ACCOUNT 
 				.settings-section
 					.success
 					a(href="/")
-						span(data-id= user.name, class="button button-default button-dark button-danger delete") Delete account
+						span(data-id= user.username, class="button button-default button-dark button-danger delete") Delete account
 
 
 

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var validator = require('validator');
 var userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     set: function (value) {return value.trim().toLowerCase()},
   },

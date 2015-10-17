@@ -6,10 +6,8 @@ A Node.js template for creating a social application.
 
 ### Installation
 
-### Seed database
+### Launching app
 
-### Launch server
-
-### Test
+### Testing
 
 # Credits

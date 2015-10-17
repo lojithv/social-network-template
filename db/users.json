@@ -1,5 +1,5 @@
 [{
-  "name": "Alberta",
+  "username": "Alberta",
   "email": "alberta@example.com",
   "admin": true,
   "password": "alberta",
@@ -7,7 +7,7 @@
   "avatar": "img/girl-avatar.jpg"
 },
 {
-  "name": "Henri",
+  "username": "Henri",
   "email": "henri@example.com",
   "admin": true,
   "password": "henri",

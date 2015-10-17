@@ -11,9 +11,9 @@ header(class='menu menu-horizontal menu-top menu-thin dark-theme affix')
 						img(src="img/girl-avatar.jpg" class="menu-avatar")
 						span(class="fa fa-chevron-down")
 					ul.dropdown-menu.light-theme
-						li.dropdown-header= 'Signed in as ' + user.name 
+						li.dropdown-header= 'Signed in as ' + user.username 
 						li(role="separator" class="divider")
-						li: a(href="/" + user.name) View profile
+						li: a(href="/" + user.username) View profile
 						li: a(href="/dashboard") Settings
 						li: a(href="/logout") Log out
 			else

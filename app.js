@@ -17,7 +17,7 @@ var express = require('express'),
 
 var app = express();
 app.locals.appTitle = 'The Network';
-//Expose collections to request handlers
+/*Expose collections to request handlers
 app.use(function(req, res, next) {
 	if (!models.User) {
 		return next(new Error('No Models.'));
@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
 	req.models = models;
 	return next();
 });
-
+*/
 //Express configurations
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -69,15 +69,15 @@ if ('development' === app.get('env')) {
 //Pages and routes
 app.get('/', routes.index);
 app.get('/signup', routes.user.signup);
-app.post('/signup', routes.user.add);
 app.get('/login', routes.user.login);
 app.post('/login', routes.user.authenticate);
 app.get('/logout', routes.user.logout);
 app.get('/dashboard', authorize, routes.user.showDashboard);
 app.get('/users', routes.user.showAll);
 app.get('/:user', routes.user.show);
-app.put('/:user', routes.user.update);
-app.delete('/api/users/:id', routes.user.del);
+app.post('/signup', routes.user.add);
+app.post('/:user', routes.user.update);
+app.delete('/:user', routes.user.del);
 
 app.all('*', function (req, res) {
 	res.sendStatus(404);

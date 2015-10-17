@@ -6,7 +6,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	models = require('./models'),
 	config = require('./config'),
-	dbUrl = process.env.MONGOHQ_URL || config.db.MONGOLAB_URI, 
+	dbUrl = process.env.MONGOLAB_URI || config.db.MONGOLAB_URI, 
 	db = mongoose.connect(dbUrl, {safe: true}),
 	//Express middleware
 	cookieParser = require('cookie-parser'),

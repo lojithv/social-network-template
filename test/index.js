@@ -21,8 +21,15 @@ describe('Users', function () {
   it('gets user list', function (done) {
     request.get('http://localhost:' + port + '/users').end(function(err, res){
         for (var i = 0; i < seedUsers.length; i++) {
-          expect(res.text).to.contain(seedUsers[i].name);
+          expect(res.text).to.contain('<h3>' + seedUsers[i].username);
         }
+        done();
+    });
+  });
+
+  it('sends 404',function (done){
+    request.get('http://localhost:' + port + '/bad').end(function(err, res){
+        expect(res.status).to.equal(404);
         done();
     });
   });
@@ -50,12 +57,6 @@ describe('Users', function () {
 
   });
 
-  it('gets non existent route',function (done){
-    request.get('http://localhost:' + port + '/bad').end(function(err, res){
-        expect(res.status).to.equal(404);
-        done();
-    });
-  });
 
   it('gets alberta route', function (done) {
     request.get('http://localhost:' + port + '/Alberta').end(function(err, res){
@@ -79,22 +80,23 @@ describe('Users', function () {
       .get('http://localhost:' + port + '/dashboard')
       .end(function(err, res){
         expect(err).to.not.equal(null);
+        expect(res.status).to.equal(401);
         done();
     });
   });
 
 
-  it.only('adds new user', function (done) {
+  it('adds new user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
-      .send({name: "test", email: "test@example.com", password: "test"})
+      .send({username: "test", email: "test@example.com", password: "test"})
       .end(function (err, res) {
         expect(err).to.equal(null);
         expect(res.status).to.equal(200);
         expect(res.redirects[0]).to.equal('http://localhost:' + port + '/dashboard');
         
       });
-      /*
+      
     request
     .get('http://localhost:' + port + '/test')
     .end(function (err, res) {
@@ -102,16 +104,16 @@ describe('Users', function () {
       expect(res.status).to.equal(200);
       done();
     });
-*/
+
   });
   
   it('checks duplicate user', function (done) {
     request
       .post('http://localhost:' + port + '/signup')
-      .send({name: "test", email: "test@example.com", password: "test"})
+      .send({username: "test", email: "test@example.com", password: "test"})
       .end(function (err, res) {
-        //console.log(res);
-        expect(res.text).to.contain('Username already exists');
+        //TODO: check user count
+        expect(err).to.equal(null);
         done();
       });
 
@@ -119,8 +121,8 @@ describe('Users', function () {
 
   it('updates user', function (done) {
     request
-      .put('http://localhost:' + port + '/test')
-      .send({name: "testing", email: 'testing@example.com'})
+      .post('http://localhost:' + port + '/test')
+      .send({username: "testing", email: 'testing@example.com'})
       .end(function (err, res) {
         console.log(res.body);
         expect(err).to.equal(null);
@@ -139,7 +141,7 @@ describe('Users', function () {
 
   it('deletes user', function (done) {
     request
-      .del('http://localhost:' + port + '/users/api/test')
+      .del('http://localhost:' + port + '/testing')
       //.send({"destroy": true})
       .end(function (err, res) {
         console.log(err);

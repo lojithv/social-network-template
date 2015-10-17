@@ -23,11 +23,7 @@ exports.add = function (req, res, next) {
  user.username = req.body.username;
  user.email = req.body.email;
  user.password = req.body.password;
-  /*var user = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  }*/
+  
   // Check for duplicate username
   User.count({username: user.username}, function (error, count) {
       if (count > 0) return res.render('signup', {error: 'Username already exists'});
@@ -50,7 +46,7 @@ exports.add = function (req, res, next) {
 }
 
 exports.update = function (req, res, next) {
-  console.log('req.body.email', req.body.email);
+  //console.log('req.body.email', req.body.email);
   User.findOne({username: req.session.user.username}, function (error, user) {
     if (error) return res.render('error', {error: 'oops! something went wrong'});
     if (req.body.username) {

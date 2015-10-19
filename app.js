@@ -5,7 +5,7 @@ var express = require('express'),
 	favicon = require('serve-favicon'),
 	mongoose = require('mongoose'),
 	models = require('./models'),
-	dbUrl = process.env.MONGOLAB_URI,
+	dbUrl = 'mongodb://localhost:27017/blog' || process.env.MONGOLAB_URI,
 	db = mongoose.connect(dbUrl, {safe: true}),
 	//Express middleware
 	cookieParser = require('cookie-parser'),
@@ -17,7 +17,6 @@ var express = require('express'),
 
 var app = express();
 app.locals.appTitle = 'The Network';
-//db.mynewcollection.insert({ "foo" : "bar" })
 //Express configurations
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));

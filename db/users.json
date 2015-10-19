@@ -1,16 +1,16 @@
 [{
-  "username": "Alberta",
-  "email": "alberta@example.com",
+  "username": "girl",
+  "email": "girl@example.com",
   "admin": true,
-  "password": "alberta",
+  "password": "girl",
   "thumbnail": "img/girl-thumb.png",
   "avatar": "img/girl-avatar.jpg"
 },
 {
-  "username": "Henri",
-  "email": "henri@example.com",
+  "username": "boy",
+  "email": "boy@example.com",
   "admin": true,
-  "password": "henri",
+  "password": "boy",
   "thumbnail": "img/boy-thumb.png",
   "avatar": "img/boy-avatar.jpg"
 }]

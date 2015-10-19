@@ -35,14 +35,6 @@ exports.add = function (req, res, next) {
     req.session.admin = user.admin
     res.redirect('/dashboard');
   });
-/*
-  req.models.User.create(user, function (error, user) {
-    if (error) return res.render('signup', {error: error});
-    req.session.user = user;
-    req.session.admin = user.admin
-    res.redirect('/dashboard');
-  });
-*/
 }
 
 exports.update = function (req, res, next) {

@@ -11,6 +11,8 @@ describe('Users', function () {
     boot();
   });
 
+
+
   it('gets home page route',function (done){
     request.get('http://localhost:' + port).end(function(err, res){
         expect(res.status).to.equal(200);
@@ -119,7 +121,7 @@ describe('Users', function () {
 
   });
 
-  it('updates user', function (done) {
+  it('updates user email', function (done) {
     request
       .post('http://localhost:' + port + '/test')
       .send({username: "testing", email: 'testing@example.com'})
@@ -139,6 +141,7 @@ describe('Users', function () {
   });
 
 
+  //updates user pass
   it('deletes user', function (done) {
     request
       .del('http://localhost:' + port + '/testing')

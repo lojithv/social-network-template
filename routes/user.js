@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var bcrypt = require('bcrypt');
 
 exports.signup = function (req, res, next) {
   res.render('signup');
@@ -16,26 +17,51 @@ exports.logout = function(req, res, next) {
 
 exports.add = function (req, res, next) {
   if(!req.body.username || !req.body.email || !req.body.password) {
-    return res.render('signup', {error: 'Fill name, email, and password'});
- }
- //TODO: check if user is in database, send cofirmation email 
- var user = new User();
- user.username = req.body.username;
- user.email = req.body.email;
- user.password = req.body.password;
-  
-  // Check for duplicate username
-  User.count({username: user.username}, function (error, count) {
-      if (count > 0) return res.render('signup', {error: 'Username already exists'});
+    return res.render('signup', {error: 'Enter name, email, and password'});
+  }
+ 
+  User.findOne({username: req.body.username}, function (error, usrData) {
+    if (usrData === null) {
+      bcrypt.genSalt(10, function (error, salt) {
+        bcrypt.hash(req.body.password, salt, function (error, hash) {
+          var user = new User();
+          user.username = req.body.username;
+          user.email = req.body.email;
+          user.password = hash;
+          user.save(function (error, user) {
+            if (error) return res.send('signup', {error: error});
+            req.session.user = user;
+            req.session.admin = user.admin
+            res.redirect('/dashboard');
+          });
+        });
+      });
+    } else {
+      res.render('signup', {error: 'User already exists'});
+    }
   });
 
-  user.save(function (error, user) {
-    if (error) return res.render('signup', {error: error});
-    req.session.user = user;
-    req.session.admin = user.admin
-    res.redirect('/dashboard');
-  });
 }
+
+exports.authenticate = function(req, res, next) {
+  if (!req.body.email || !req.body.password) {
+    return res.render('login', {error: 'Please enter your email and password.'});
+  }
+  User.findOne({email:req.body.email}, function (error, user) {
+    if (error) return next(error);
+    if (!user) return res.render('login', {error: 'Incorrect email and password combination'});
+    bcrypt.compare(req.body.password, user.password, function (error, authorized) {
+      if (!authorized) {
+        return res.render('login', {error: 'Incorrect email and password combination'});
+      } else {
+        req.session.user = user;
+        req.session.admin = user.admin
+        res.redirect('/dashboard');
+      }
+    });
+
+  });
+};
 
 exports.update = function (req, res, next) {
   //console.log('req.body.email', req.body.email);
@@ -78,23 +104,6 @@ exports.showAll = function (req, res, next) {
     res.render('userlist', {user: req.session.user, users: users})
   });
 }
-
-exports.authenticate = function(req, res, next) {
-  if (!req.body.email || !req.body.password) {
-  	return res.render('login', {error: 'Please enter your email and password.'});
-  }
-  User.findOne({
-  	email: req.body.email,
-  	password: req.body.password
-  }, function (error, user) {
-  	if (error) return next(error);
-  	if (!user) return res.render('login', {error: 'Incorrect email and password combination'});
-  	req.session.user = user;
-  	req.session.admin = user.admin
-  	res.redirect('/dashboard');
-  });
-
-};
 
 exports.showDashboard = function(req, res, next) {
 	User.findOne({email:req.session.user.email}, function(error, user) {

@@ -70,6 +70,12 @@ app.post('/signup', routes.user.add);
 app.post('/:user', routes.user.update);
 app.delete('/:user', routes.user.del);
 
+app.all('/api', authorize);
+app.get('/api/posts', routes.post.list);
+app.post('/api/posts', routes.post.add);
+app.put('/api/posts/:id', routes.post.edit);
+app.delete('/api/posts/:id', routes.post.del);
+
 app.all('*', function (req, res) {
 	res.sendStatus(404);
 });

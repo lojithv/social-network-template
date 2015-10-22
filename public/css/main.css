@@ -167,4 +167,16 @@ ul.dropdown-menu{
 	height: 300px;
 }
 
+.home-img {
+	background-image: url('../img/home.jpg');
+}
+
+.post .modal-footer {
+	border: 0;
+	padding-top: 0;
+}
+
+.post textarea {
+	resize: none;
+}
  

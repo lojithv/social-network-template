@@ -9,4 +9,4 @@ exports.index = function(req, res, next){
 
 exports.user = require('./user');
 
-
+exports.post = require('./post');

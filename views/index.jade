@@ -3,7 +3,9 @@ extends layout
 block content
 	- var menu = 'index'
 	include includes/header
-	.page-header.bg.dark-theme.electric-gradient
+	if (admin) 
+		include includes/post
+	.page-header.bg.home-img.dark-theme.electric-gradient
 		.container.text-center
 			//div.img-overlay
 			div.col-sm-10.col-sm-offset-1

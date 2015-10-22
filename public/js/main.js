@@ -4,17 +4,10 @@ $(document).ready(function () {
 	var btnDelete = $('.delete');
 	btnDelete.click(function (e){
 		var id = btnDelete.attr('data-id');
-		var destroy = confirm('Delete profile for ' + id + '?');
-		if (destroy) {
-			$.ajax({
-				type: 'DELETE',
-				url: '/' + id
-			});
-		}
-		else {
-			e.preventDefault();
-		}	
-		
+		$.ajax({
+			type: 'DELETE',
+			url: '/' + id
+		});
 	});
 
 	var btnSave = $('.save');

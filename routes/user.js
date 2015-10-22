@@ -32,7 +32,7 @@ exports.add = function (req, res, next) {
             if (error) return res.send('signup', {error: error});
             req.session.user = user;
             req.session.admin = user.admin
-            res.redirect('/dashboard');
+            res.render('dashboard', {user: user});
           });
         });
       });
@@ -56,7 +56,7 @@ exports.authenticate = function(req, res, next) {
       } else {
         req.session.user = user;
         req.session.admin = user.admin
-        res.redirect('/dashboard');
+        res.render('dashboard', {user: user});
       }
     });
 
@@ -76,7 +76,8 @@ exports.update = function (req, res, next) {
     
     user.save(function(error) {
       if (error) return res.send(error);
-      res.redirect('/dashboard');
+      req.session.user = user;
+      res.render('dashboard', {user: user});
     });
   });
 }
@@ -87,13 +88,15 @@ exports.del = function (req, res, next) {
     if(!user) return next(new Error('user not found'));
     if (error) return next(error);
     req.session.destroy();
+    res.redirect('/');
   });
 }
 
 exports.show = function (req, res, next) {
-  if (!req.params.user) return res.render('error', {error: 'page not found'});
+  if (!req.params.user) return res.send(404);
   User.findOne({username: req.params.user}, function (error, profile) {
-    if (error) return res.render('error', {error: error});
+    if (error) return next(error);
+    if(!profile) return res.sendStatus(404);
     res.render('profile', {user: req.session.user, profile: profile});
   });
 }

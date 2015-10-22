@@ -5,7 +5,7 @@ var express = require('express'),
 	favicon = require('serve-favicon'),
 	mongoose = require('mongoose'),
 	models = require('./models'),
-	dbUrl = 'mongodb://localhost:27017/blog' || process.env.MONGOLAB_URI,
+	dbUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/blog',
 	db = mongoose.connect(dbUrl, {safe: true}),
 	//Express middleware
 	cookieParser = require('cookie-parser'),

@@ -32,7 +32,7 @@ exports.add = function (req, res, next) {
             if (error) return res.send('signup', {error: error});
             req.session.user = user;
             req.session.admin = user.admin
-            res.render('dashboard', {user: user});
+            res.redirect('/dashboard');
           });
         });
       });
@@ -56,7 +56,7 @@ exports.authenticate = function(req, res, next) {
       } else {
         req.session.user = user;
         req.session.admin = user.admin
-        res.render('dashboard', {user: user});
+        res.redirect('/dashboard');
       }
     });
 
@@ -77,7 +77,7 @@ exports.update = function (req, res, next) {
     user.save(function(error) {
       if (error) return res.send(error);
       req.session.user = user;
-      res.render('dashboard', {user: user});
+      res.redirect('/dashboard');
     });
   });
 }

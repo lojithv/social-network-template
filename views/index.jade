@@ -3,8 +3,8 @@ extends layout
 block content
 	- var menu = 'index'
 	include includes/header
-	//if (admin) 
-		//include includes/post
+	if (admin) 
+		include includes/post
 	.page-header.bg.home-img.dark-theme.electric-gradient
 		.container.text-center
 			//div.img-overlay

@@ -5,14 +5,16 @@ var boot = require('../app').boot,
   expect = require('chai').expect,
   seedUsers = require('../db/users.json');
 
-describe('Users', function () {
+describe('USER', function () {
   
   before(function () {
     boot();
   });
 
   it('gets home page route',function (done){
-    request.get('http://localhost:' + port).end(function(err, res){
+    request
+      .get('http://localhost:' + port)
+      .end(function(err, res){
         expect(res.status).to.equal(200);
         done();
     });
@@ -44,6 +46,7 @@ describe('Users', function () {
       .end(function (err, res) {
         expect(err).to.equal(null);
         expect(res.status).to.equal(200);
+        expect(res.redirects[0]).to.equal('http://localhost:' + port + '/dashboard');
         done(); 
       });
   });
@@ -85,6 +88,7 @@ describe('Users', function () {
         //console.log(res.body);
         expect(err).to.equal(null);
         expect(res.status).to.equal(200);
+        expect(res.redirects[0]).to.equal('http://localhost:' + port + '/dashboard');
         done();
       });
   });
@@ -96,6 +100,7 @@ describe('Users', function () {
       .end(function (err, res) {
         expect(err).to.equal(null);
         expect(res.status).to.equal(200);
+        expect(res.redirects[0]).to.equal('http://localhost:' + port + '/dashboard');
         done();
       });
   });
@@ -151,6 +156,7 @@ describe('Users', function () {
       .end(function (err, res) {
         console.log(err);
         expect(err).to.equal(null);
+        expect(res.redirects[0]).to.equal('http://localhost:' + port + '/');
         done();
       });
   });

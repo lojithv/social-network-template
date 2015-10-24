@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Post = require('../models/post');
 
 exports.index = function(req, res, next){
 	User.find(function (error, users) {

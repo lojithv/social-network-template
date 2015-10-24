@@ -10,6 +10,7 @@ var express = require('express'),
 	//Express middleware
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
+	//log requests to the terminal
 	logger = require ('morgan'),
 	errorHandler = require('errorhandler'),
 	bodyParser = require('body-parser'),
@@ -70,10 +71,13 @@ app.post('/signup', routes.user.add);
 app.post('/:user', routes.user.update);
 app.delete('/:user', routes.user.del);
 
-app.all('/api', authorize);
-app.get('/api/posts', routes.post.list);
-app.post('/api/posts', routes.post.add);
-app.put('/api/posts/:id', routes.post.edit);
+app.all('/api/*', authorize);
+app.get('/api/posts', routes.post.getPosts);
+app.put('/api/posts', routes.post.updateAll);
+app.delete('/api/posts', routes.post.deleteAll)
+app.post('/api/posts', routes.post.create);
+app.get('/api/posts/:id', routes.post.getPost)
+app.put('/api/posts/:id', routes.post.update);
 app.delete('/api/posts/:id', routes.post.del);
 
 app.all('*', function (req, res) {

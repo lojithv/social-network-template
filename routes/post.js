@@ -1,15 +1,62 @@
-exports.list = function (req, res, next) {
-	res.send('list all');
+var Post = require('../models/post');
+
+//GET ALL POSTS
+exports.getPosts = function (req, res, next) {
+	Post.find(function (err, posts) {
+		if (err) return res.send(err);
+		res.json(posts);
+	});
 }
 
-exports.add = function (req, res, next) {
-	res.send('created new post');
+//UPDATE ALL POSTS
+exports.updateAll = function (req, res, next) {
+	res.send('update all');
 }
 
-exports.edit = function (req ,res, next) {
-	res.send('updated post');
+//DELETE ALL POSTS
+exports.deleteAll = function (req, res, next) {
+	res.send('delete all');
 }
 
+//CREATE POST 
+exports.create = function (req, res, next) {
+	var post = new Post({
+		text: req.body.text,
+		author: req.body.author,
+		type: req.body.type
+	});
+
+	post.save(function (err, post) {
+		if (err) return res.send(err);
+		res.json(post);
+	});
+}
+
+//GET POST
+exports.getPost = function (req, res, next) {
+	Post.findById(req.params.id, function (err, post) {
+		if (err) return res.send(err);
+		res.json(post);
+	});
+}
+
+//UPDATE POST
+exports.update = function (req, res, next) {
+	Post.findById(req.params.id, function (err, post) {
+		if (err) return res.send(err);
+		post.text = req.body.text;
+
+		post.save(function (err, post) {
+			if (err) res.send(err);
+			res.json(post);
+		});
+	});
+}
+
+//DELETE POST
 exports.del = function (req, res, next) {
-	res.send('deleted post');
+	Post.findByIdAndRemove(req.params.id, function (err, post) {
+		if (err) res.send(err);
+		res.json({message: "removed"});
+	});
 }

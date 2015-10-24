@@ -2,8 +2,6 @@ extends layout
 
 block content
 	include includes/header
-	if (admin) 
-		include includes/post
 	.section.settings.light-theme
 		.container
 			form(method="POST", action="/" + user.username, class="form")

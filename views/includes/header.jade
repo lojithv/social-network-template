@@ -10,7 +10,7 @@ header(class='menu menu-horizontal menu-top menu-thin dark-theme affix')
 				li.dropdown
 					a(id="dLabel" class="dropdown-toggle" data-toggle="dropdown" href="#") 
 						//span.fa.fa-user.fa-2x.menu-avatar
-						img(src="img/girl-avatar.jpg" class="menu-avatar")
+						img(src= user.avatar class="menu-avatar")
 						span(class="fa fa-chevron-down")
 					ul.dropdown-menu.light-theme
 						li.dropdown-header= 'Signed in as ' + user.username 

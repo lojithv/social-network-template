@@ -1,0 +1,42 @@
+[
+	{
+		"text": "This is an example text post",
+		"author": "admin",
+		"type": "text"
+	},
+	{
+		"text": "This is an example text post",
+		"author": "admin",
+		"type": "text"
+	},
+	{
+		"text": "This is an example photo post",
+		"author": "admin",
+		"type": "photo"
+	},
+	{
+		"text": "This is an example photo post",
+		"author": "admin",
+		"type": "photo"
+	},
+	{
+		"text": "This is an example photo post",
+		"author": "admin",
+		"type": "photo"
+	},
+	{
+		"text": "This is an example video post",
+		"author": "admin",
+		"type": "video"
+	},
+	{
+		"text": "This is an example video post",
+		"author": "admin",
+		"type": "video"
+	},
+	{
+		"text": "This is an example video post",
+		"author": "admin",
+		"type": "video"
+	}
+]

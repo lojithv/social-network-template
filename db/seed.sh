@@ -1,2 +1,2 @@
 mongoimport --db blog --collection users --file ./db/users.json --jsonArray
-mongoimport --db blog --collection posts --drop --file ./db/posts.json --jsonArray
+mongoimport -h ds041432.mongolab.com:41432 --db social --collection posts --drop -u alberta -p alberta --file ./db/posts.json --jsonArray

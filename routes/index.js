@@ -2,9 +2,9 @@ var User = require('../models/user');
 var Post = require('../models/post');
 
 exports.index = function(req, res, next){
-	User.find(function (error, users) {
+	Post.find({}, null, {sort: {created_at: -1}}, function (error, posts) {
     if (error) return next(error);
-    res.render('index', {user: req.session.user, users: users})
+    res.render('index', {user: req.session.user, posts: posts})
   });
 };
 

@@ -9,14 +9,13 @@ $(document).ready(function () {
 			url: '/' + id
 		});
 	});
-
-	var btnSave = $('.save');
 /*
-	btnSave.click(function (e) {
-		//e.preventDefault();
+	var btnPost = $('#post');
+
+	btnPost.click(function () {
 		console.log('save clicked');
 		$.ajax({
-			type: 'PUT',
+			type: 'POST',
 			url: $('form').attr('action')
 		});
 	});

@@ -1,17 +1,17 @@
-div(id="post" class="post modal fade")
+div(id="compose" class="compose modal fade")
 	.modal-dialog
 		.modal-content
 			// HEADER
-			div(class="modal-header")
+			.modal-header
 				span Post content
 				span(class="modal-close fa fa-close pull-right" data-dismiss="modal")
 				// ERROR MESSAGES
 				p(class="form-results")
 			.modal-body
-				textarea(rows="5" class="form-control" placeholder="not implemented yet") 
-			.modal-footer
-				.pull-left
-					span(class="fa fa-lg fa-camera") &nbsp;&nbsp;
-					span(class="fa fa-lg fa-video-camera")
-				span(class="button button-default button-sm button-blue pull-right") Post
-    
+				form(method="post" action="/api/posts")
+					textarea(name="text" rows="5" class="form-control" placeholder="not implemented yet") 
+					br
+					.pull-left
+						span(class="fa fa-lg fa-camera") &nbsp;&nbsp;
+						span(class="fa fa-lg fa-video-camera")
+					input(type="submit" value="submit" id="post" class="button button-default button-sm button-blue pull-right")

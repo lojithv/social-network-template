@@ -22,8 +22,7 @@ exports.deleteAll = function (req, res, next) {
 exports.create = function (req, res, next) {
 	var post = new Post({
 		text: req.body.text,
-		author: req.body.author,
-		type: req.body.type
+		author: req.session.user
 	});
 
 	post.save(function (err, post) {

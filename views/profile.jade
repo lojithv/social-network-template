@@ -2,6 +2,27 @@ extends layout
 
 block content
 	include includes/header
-	.page-header.text-center.bg.dark-theme.electric-gradient
+	.page-header.text-center.bg.home-img.dark-theme
 		.container
 			h1.light= profile.username
+	.section
+		.container
+			.col-sm-6.col-sm-offset-3
+				- for (var i = 0; i < posts.length; i++)
+					.post
+						.post-primary-content
+							.post-avatar.dark-theme
+								img(src= posts[i].author.avatar || "img/avatar-black.png")
+							h5= posts[i].author.username
+							p.post-text= posts[i].text
+						if posts[i].media === "photo"
+							.post-photo
+								img(src="img/photo.jpg")
+						if posts[i].media === "video"
+							.post-photo
+								img(src="img/video.jpg")
+						.post-footer
+							.text-right
+								span.fa.fa-reply
+								span.fa.fa-heart-o
+								span.fa.fa-ellipsis-h

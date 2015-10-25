@@ -3,23 +3,75 @@ extends layout
 block content
 	- var menu = 'index'
 	include includes/header
-	.page-header.bg.home-img.dark-theme.electric-gradient
+	.page-header.bg.home-img.dark-theme
 		.container.text-center
 			//div.img-overlay
 			div.col-sm-10.col-sm-offset-1
 				h1.thin= appTitle
 				p.description A Node.js template for building social apps
-	.section.light-theme
+	.section
 		.container
-			.row
-				each item in users
-					.col-sm-6.col-md-4
+			.col-sm-4
+				- for (var i = 0; i < posts.length; i++)
+					if (i%3 === 0)
 						div
-							a(href= '/' + item.username)
-								if item.thumbnail
-									img(src= item.thumbnail class="thumb")
-								else
-									img(src="img/picture.jpg" class="thumb")
-							.caption
-								h3.light= item.username
+							.post
+								.post-primary-content
+									.post-avatar.dark-theme
+										img(src= posts[i].author.avatar || "img/avatar-black.png")
+									h5= posts[i].author.username
+									p.post-text= posts[i].text
+								if posts[i].media === "photo"
+									.post-photo
+										img(src="img/photo.jpg")
+								if posts[i].media === "video"
+									.post-photo
+										img(src="img/video.jpg")
+								.post-footer
+									.text-right
+										span.fa.fa-reply
+										span.fa.fa-heart-o
+										span.fa.fa-ellipsis-h
+			.col-sm-4
+				- for (var i = 0; i < posts.length; i++)
+					if (i === 1 || i%3 == 1)
+						div
+							.post
+								.post-primary-content
+									.post-avatar.dark-theme
+										img(src= posts[i].author.avatar || "img/avatar-black.png")
+									h5= posts[i].author.username
+									p.post-text= posts[i].text
+								if posts[i].media === "photo"
+									.post-photo
+										img(src="img/photo.jpg")
+								if posts[i].media === "video"
+									.post-photo
+										img(src="img/video.jpg")
+								.post-footer
+									.text-right
+										span.fa.fa-reply
+										span.fa.fa-heart-o
+										span.fa.fa-ellipsis-h
+			.col-sm-4
+				- for (var i = 0; i < posts.length; i++)
+					if (i === 2 || i%3 === 2)
+						div
+							.post
+								.post-primary-content
+									.post-avatar.dark-theme
+										img(src= posts[i].author.avatar || "img/avatar-black.png")
+									h5= posts[i].author.username
+									p.post-text= posts[i].text
+								if posts[i].media === "photo"
+									.post-photo
+										img(src="img/photo.jpg")
+								if posts[i].media === "video"
+									.post-photo
+										img(src="img/video.jpg")
+								.post-footer
+									.text-right
+										span.fa.fa-reply
+										span.fa.fa-heart-o
+										span.fa.fa-ellipsis-h
 								

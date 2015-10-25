@@ -7,8 +7,7 @@ var boot = require('../app').boot,
 var id;
 var post = {
 	text: 'This is a test',
-	type: 'text',
-	author: 'Tester'
+  author: 'admin',
 };
 
 var user = {
@@ -17,19 +16,14 @@ var user = {
 };
 
 describe('POST', function () {
-	before(function () {
+	before(function (done) {
     boot();
-    
-  });
-
-	it('log in', function (done) {
-		request
-    	.post('http://localhost:' + port + '/login')
-    	.send(user)
-    	.end(function (err, res) {
-    		console.log('logged in');
-    		done();
-    	});
+    request
+      .post('http://localhost:' + port + '/login')
+      .send(user)
+      .end(function (err, res) {
+        done();
+      });
   });
 
   it('get posts', function (done) {
@@ -54,8 +48,8 @@ describe('POST', function () {
 			.end(function (err, res) {
 				id = res.body._id;
 				expect(res.body.text).to.equal(post.text);
-				expect(res.body.author).to.equal(post.author);
-				expect(res.body.type).to.equal(post.type);
+				expect(res.body.author.username).to.equal('admin');
+				expect(res.body.media).to.equal("text");
 				expect(res.status).to.equal(200);
 				done();
 			});

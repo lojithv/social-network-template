@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 var postSchema = new mongoose.Schema({
 	text: String,
-	author: String,
-	type: String,
+	author: Object,
+	media: {type: String, default: "text"},
 	created_at: Date,
 	updated_at: Date
 });

@@ -27,8 +27,8 @@ exports.create = function (req, res, next) {
 
 	post.save(function (err, post) {
 		if (err) return res.send(err);
-		//res.json(post);
-		res.redirect('/');
+		res.json(post);
+		//res.redirect('/');
 	});
 }
 

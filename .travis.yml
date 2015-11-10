@@ -9,4 +9,4 @@ node_js:
   - "0.6"
   - "iojs"
 env:
-  - NODE_ENV=development
+  - NODE_ENV=TEST

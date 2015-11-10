@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/albertaw/social-network-template.svg?branch=master)](https://travis-ci.org/albertaw/social-network-template)
-
 # The Network
 
 A Node.js template for creating a social application. 

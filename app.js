@@ -1,3 +1,4 @@
+// your application's code
 var express = require('express'),
 	routes = require('./routes'),
 	http = require('http'),

@@ -46,44 +46,14 @@ app.use(function (req, res, next) {
 	next();
 });
 
-//authorization middleware
-var authorize = function (req, res, next) {
-	if (req.session && req.session.admin) {
-		return next();
-	} else {
-		return res.sendStatus(401);
-	}
-};
+
 
 if ('development' === app.get('env')) {
 	app.use(errorHandler());
 }
 
 //Pages and routes
-app.get('/', routes.index);
-app.get('/signup', routes.user.signup);
-app.get('/login', routes.user.login);
-app.post('/login', routes.user.authenticate);
-app.get('/logout', routes.user.logout);
-app.get('/dashboard', authorize, routes.user.showDashboard);
-app.get('/users', routes.user.showAll);
-app.get('/:user', routes.user.show);
-app.post('/signup', routes.user.add);
-app.post('/:user', routes.user.update);
-app.delete('/:user', routes.user.del);
-
-app.all('/api/*', authorize);
-app.get('/api/posts', routes.post.getPosts);
-app.put('/api/posts', routes.post.updateAll);
-app.delete('/api/posts', routes.post.deleteAll)
-app.post('/api/posts', routes.post.create);
-app.get('/api/posts/:id', routes.post.getPost)
-app.put('/api/posts/:id', routes.post.update);
-app.delete('/api/posts/:id', routes.post.del);
-
-app.all('*', function (req, res) {
-	res.sendStatus(404);
-});
+app.use(routes);
 
 var server = http.createServer(app);
 

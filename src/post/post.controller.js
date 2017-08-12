@@ -1,4 +1,12 @@
-var Post = require('../models/post');
+var Post = require('./post.model');
+
+//HOME PAGE
+exports.index = function(req, res, next){
+	Post.find({}, null, {sort: {created_at: -1}}, function (error, posts) {
+    if (error) return next(error);
+    res.render('index', {user: req.session.user, posts: posts})
+  });
+};
 
 //GET ALL POSTS
 exports.getPosts = function (req, res, next) {
@@ -28,7 +36,7 @@ exports.create = function (req, res, next) {
 	post.save(function (err, post) {
 		if (err) return res.send(err);
 		res.json(post);
-		//res.redirect('/');
+		//res.redirect('/dashboard');
 	});
 }
 

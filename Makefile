@@ -4,15 +4,15 @@ MOCHA_OPTS = --ui bdd -c
 
 db:
 	echo Seeding blog *****************************************************
-	./db/seed.sh
+	./src/db/seed.sh
 test:
 	clear
-	./db/seed.sh
+	./src/db/seed.sh
 	echo Starting test ******************************************************
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	test/*.js
+	src/**/*.spec.js
 	echo Ending test
 user:
 	clear
@@ -20,7 +20,7 @@ user:
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	test/user.js
+	src/user/user.spec.js
 	echo Ending test
 post: 
 	clear
@@ -28,7 +28,7 @@ post:
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	test/post.js
+	src/post/post.spec.js
 	echo Ending test
 start:
 	node app

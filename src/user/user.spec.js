@@ -135,7 +135,7 @@ describe('USER', function () {
     });
   });
 
-
+  //fails in travis, unauthorized error
   xit('logs in user:testing', function (done) {
     request
       .post('http://localhost:' + port + '/login')

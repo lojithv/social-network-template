@@ -1,5 +1,5 @@
-var User = require('../models/user');
-var Post = require('../models/post');
+var User = require('./user.model');
+var Post = require('../post/post.model');
 var bcrypt = require('bcrypt');
 
 exports.signup = function (req, res, next) {

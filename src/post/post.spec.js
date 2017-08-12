@@ -50,7 +50,7 @@ describe('POST', function () {
 				expect(res.body.text).to.equal(post.text);
 				expect(res.body.author.username).to.equal('admin');
 				expect(res.body.media).to.equal("text");
-				expect(res.status).to.equal(200);
+        expect(res.status).to.equal(200);
 				done();
 			});
 	});

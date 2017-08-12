@@ -1,11 +1,12 @@
 // your application's code
 var express = require('express'),
-	routes = require('./routes'),
+	router = express.Router();
+	posts = require('./post/post.routes'),
+	users = require('./user/user.routes'),
 	http = require('http'),
 	path = require('path'),
 	favicon = require('serve-favicon'),
 	mongoose = require('mongoose'),
-	models = require('./models'),
 	dbUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/blog',
 	db = mongoose.connect(dbUrl, {safe: true}),
 	//Express middleware
@@ -24,7 +25,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join('public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 //Express middleware configuration
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -53,7 +54,11 @@ if ('development' === app.get('env')) {
 }
 
 //Pages and routes
-app.use(routes);
+app.use(users);
+app.use(posts);
+router.all('*', function (req, res) {
+	res.sendStatus(404);
+});
 
 var server = http.createServer(app);
 

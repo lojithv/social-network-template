@@ -3,3 +3,5 @@ node_js:
   - "0.12"
 env:
   - NODE_ENV=TEST
+services:
+  - mongodb

@@ -1,6 +1,6 @@
 var User = require('./user.model');
 var Post = require('../post/post.model');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 exports.signup = function (req, res, next) {
   res.render('signup');

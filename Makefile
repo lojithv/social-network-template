@@ -12,8 +12,7 @@ test:
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	./src/user/user.spec.js
-	./src/post/post.spec.js
+	./test
 	echo Ending test
 user:
 	clear
@@ -21,7 +20,7 @@ user:
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	./src/user/user.spec.js
+	./test/user.spec.js
 	echo Ending test
 post: 
 	clear
@@ -29,7 +28,7 @@ post:
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	./src/post/post.spec.js
+	./test/post.spec.js
 	echo Ending test
 start:
 	node ./src/app

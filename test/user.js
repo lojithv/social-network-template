@@ -1,9 +1,9 @@
-var boot = require('../app').boot,
-  shutdown = require('../app').shutdown,
-  port = require('../app').port,
+var boot = require('../src/app').boot,
+  shutdown = require('../src/app').shutdown,
+  port = require('../src/app').port,
   request = require('superagent').agent(),
   expect = require('chai').expect,
-  seedUsers = require('../db/users.json');
+  seedUsers = require('../src/db/users.json');
 
 describe('USER', function () {
   

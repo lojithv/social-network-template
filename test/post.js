@@ -1,6 +1,6 @@
-var boot = require('../app').boot,
-  shutdown = require('../app').shutdown,
-  port = require('../app').port,
+var boot = require('../src/app').boot,
+  shutdown = require('../src/app').shutdown,
+  port = require('../src/app').port,
   request = require('superagent').agent(),
   expect = require('chai').expect;
 
@@ -26,7 +26,7 @@ describe('POST', function () {
       });
   });
 
-  it.only('get posts', function (done) {
+  it('get posts', function (done) {
   	request
   		.get('localhost:' + port + '/api/posts')
   		.send(user)
@@ -41,7 +41,7 @@ describe('POST', function () {
   		});
   });
 
-	it('create post', function (done) {
+	xit('create post', function (done) {
 		request
 			.post('localhost:' + port + '/api/posts')
 			.send(post)
@@ -55,7 +55,7 @@ describe('POST', function () {
 			});
 	});
 
-	it('get post', function (done) {
+	xit('get post', function (done) {
 		request
   		.get('localhost:' + port + '/api/posts/' + id)
   		.end(function (err, res) {
@@ -64,7 +64,7 @@ describe('POST', function () {
   		});
 	});
 
-	it('update post', function (done) {
+	xit('update post', function (done) {
 		request
 			.put('localhost:' + port + '/api/posts/' + id)
 			.send({text: 'hello world'})
@@ -75,7 +75,7 @@ describe('POST', function () {
 			});
 	});
 
-	it('delete post', function (done) {
+	xit('delete post', function (done) {
 		request
 			.del('localhost:' + port + '/api/posts/' + id)
 			.end(function (err, res) {
@@ -84,7 +84,7 @@ describe('POST', function () {
 			});
 	});
 
-	it('check for deleted post', function (done) {
+	xit('check for deleted post', function (done) {
 		request
   		.get('localhost:' + port + '/api/posts/' + id)
   		.end(function (err, res) {
@@ -93,7 +93,7 @@ describe('POST', function () {
   		});
 	});
 
-	it('ensure only 8 posts', function (done) {
+	xit('ensure only 8 posts', function (done) {
 		request
   		.get('localhost:' + port + '/api/posts')
   		.end(function (err, res) {

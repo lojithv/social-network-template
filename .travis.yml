@@ -1,7 +1,10 @@
 language: node_js
 node_js:
-  - "0.12"
+- node
 env:
-  - NODE_ENV=TEST
+- NODE_ENV=TEST
 services:
-  - mongodb
+- mongodb
+deploy:
+  api_key:
+    secure: avDylnEt+PRo4u4Q+1r2gPv98EA0SKXuyb4qUKLEiQxjcje940wyYZlnYO91aqclq5/Pn7rwBs9WnhqtstkYXcTNF4XT4mLN5B4unFRiuQb+SDe1K5Z8HLo/nIWDdXJJgAjJ/BZGZmsdVTA0bDemJ7XdBeJloN+chZZ9+ZLZCPxTAugb4oAPrIc63oJZ0XLrjOsvxtjqEnwCxEpZB8xy/frDtlkcCHUg5Mq1bM2wHQt01v7Dven8X+Pqov9p4UBBzrY+YCmqzz1EM6FNT4ckenuH6rOzISdaK5PTqXjjJR1uI4kRWE/gx0BRbUmBBoUg7FknNMESnlvR4sCTBCg/IWm+MDst3aIVvYcQ/8qDtEVVfDx1+yC2Gz9w59uw0BRRSxXPifCej4rCW4axbS8QdXAH6WqsYSjnspJE54iC/W9ZNp7c/TqjeleURN/wJBpwbNndtrrRZztFgCsIu+5I9U0BYJCnzhnGajpoaOhGdNl5mdUkENb8VLIsmW7zvKJEnPfelGq85mcDDUS/desWjAoX40iOOV1ywRYQbtZ0X/28ltf88fIxP54bivw/eQoiIbhxU3HbqWbOONRhXTsVFcReNZZgZ4fzOGqhn65dypCGqQMQMhpjOHI9RbmtGhzNvl59cDhhkRx6mevphxssv+VdQ3WuiMPLAiHPnj1roxQ=

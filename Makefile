@@ -12,7 +12,8 @@ test:
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
 	$(MOCHA_OPTS) \
-	src/**/*.spec.js
+	src/user/user.spec.js
+	src/post/post.spec.js
 	echo Ending test
 user:
 	clear

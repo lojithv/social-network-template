@@ -26,7 +26,7 @@ describe('POST', function () {
       });
   });
 
-  it('get posts', function (done) {
+  it.only('get posts', function (done) {
   	request
   		.get('localhost:' + port + '/api/posts')
   		.send(user)

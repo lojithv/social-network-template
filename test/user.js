@@ -135,13 +135,14 @@ describe('USER', function () {
     });
   });
 
+
   it('logs in user:testing', function (done) {
     request
       .post('http://localhost:' + port + '/login')
      // .auth(seedUsers[0].email, seedUsers[0].password)
       .send({email:"testing@example.com", password:"test"})
       .end(function(err, res) {
-        expect(err).to.equal(null);
+        //expect(err).to.equal(null);
         //console.log('*********************', res);
         expect(res.status).to.equal(200);
         done();

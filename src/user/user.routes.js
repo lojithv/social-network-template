@@ -1,7 +1,7 @@
-var user = require('./user.controller');
-var express = require('express');
-var router = express.Router();
-var authorize = require('../app.routes').authorize;
+const user = require('./user.controller');
+const express = require('express');
+const router = express.Router();
+const authorize = require('../app.routes').authorize;
 
 module.exports = router;
 

@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var validator = require('validator');
-var bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
-var userSchema = new mongoose.Schema({
+let userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -24,16 +24,5 @@ var userSchema = new mongoose.Schema({
   thumbnail: String,
   avatar: { type: String, default: 'img/avatar.png'}
 });
-/*
-userSchema.pre('save', function (next) {
-  if (!this.isModified('password')) return next();
-  bcrypt.genSalt(10, function (err, salt) {
-    if (err) return next(err);
-    bcrypt.hash(this.password, salt, function (err, hash) {
-      this.password = hash;
-      next();
-    });
-  });
-});
-*/
+
 module.exports = mongoose.model('User', userSchema);

@@ -1,22 +1,35 @@
-var User = require('./user.model');
-var Post = require('../post/post.model');
-var bcrypt = require('bcryptjs');
+const User = require('./user.model');
+const Post = require('../post/post.model');
+const bcrypt = require('bcryptjs');
 
-exports.signup = function (req, res, next) {
+module.exports = {
+  signup,
+  login,
+  logout,
+  add,
+  authenticate,
+  update,
+  del,
+  show,
+  showAll,
+  showDashboard
+}
+
+function signup(req, res, next) {
   res.render('signup');
 }
 
-exports.login = function(req, res, next) {
+function login(req, res, next) {
   res.render('login');
 };
 
-exports.logout = function(req, res, next) {
+function logout(req, res, next) {
   //clear the session
   req.session.destroy();
   res.redirect('/');
 };
 
-exports.add = function (req, res, next) {
+function add(req, res, next) {
   if(!req.body.username || !req.body.email || !req.body.password) {
     return res.render('signup', {err: 'Enter name, email, and password'});
   }
@@ -44,7 +57,7 @@ exports.add = function (req, res, next) {
 
 }
 
-exports.authenticate = function(req, res, next) {
+function authenticate(req, res, next) {
   if (!req.body.email || !req.body.password) {
     return res.render('login', {error: 'Please enter your email and password.'});
   }
@@ -64,7 +77,7 @@ exports.authenticate = function(req, res, next) {
   });
 };
 
-exports.update = function (req, res, next) {
+function update(req, res, next) {
   //console.log('req.body.email', req.body.email);
   User.findOne({username: req.session.user.username}, function (err, user) {
     if (err) return res.render('error', {error: 'oops! something went wrong'});
@@ -83,7 +96,7 @@ exports.update = function (req, res, next) {
   });
 }
 
-exports.del = function (req, res, next) {
+function del(req, res, next) {
   if (!req.params.user) return next(new Error('No user ID.'));
   User.remove({username: req.params.user}, function (err, user) {
     if(!user) return next(new Error('user not found'));
@@ -93,7 +106,7 @@ exports.del = function (req, res, next) {
   });
 }
 
-exports.show = function (req, res, next) {
+function show(req, res, next) {
   if (!req.params.user) return res.send(404);
   User.findOne({username: req.params.user}, function (err, profile) {
     if (err) return next(err);
@@ -105,14 +118,14 @@ exports.show = function (req, res, next) {
   });
 }
 
-exports.showAll = function (req, res, next) {
+function showAll(req, res, next) {
   User.find({}, function (err, users) {
     if (err) return next(err);
     res.render('userlist', {user: req.session.user, users: users})
   });
 }
 
-exports.showDashboard = function(req, res, next) {
+function showDashboard(req, res, next) {
 	User.findOne({email:req.session.user.email}, function(err, user) {
     	if (err) return next(err);
     	res.render('dashboard', {user: user});

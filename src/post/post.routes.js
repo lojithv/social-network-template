@@ -1,7 +1,7 @@
-var post = require('./post.controller');
-var express = require('express');
-var router = express.Router();
-var authorize = require('../app.routes').authorize;
+const post = require('./post.controller');
+const express = require('express');
+const router = express.Router();
+const authorize = require('../app.routes').authorize;
 
 module.exports = router;
 

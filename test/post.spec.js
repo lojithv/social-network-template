@@ -1,19 +1,18 @@
-var boot = require('../src/app').boot,
+const boot = require('../src/app').boot,
   shutdown = require('../src/app').shutdown,
   port = require('../src/app').port,
   request = require('superagent').agent(),
   expect = require('chai').expect;
 
-var id;
-var post = {
-	text: 'This is a test',
-  author: 'admin',
-};
-
-var user = {
-	email: "admin@example.com",
-	password: "admin"
-};
+let id,
+  post = {
+  	text: 'This is a test',
+    author: 'admin',
+  },
+  user = {
+  	email: "admin@example.com",
+  	password: "admin"
+  };
 
 describe('POST', function () {
 	before(function (done) {
@@ -31,8 +30,8 @@ describe('POST', function () {
   		.get('localhost:' + port + '/api/posts')
   		.send(user)
   		.end(function (err, res) {
-  			var count = 0;
-  			for (var i in res.body) {
+  			let count = 0;
+  			for (let i in res.body) {
   				count++;
   			}
   			expect(count).to.equal(8);
@@ -97,8 +96,8 @@ describe('POST', function () {
 		request
   		.get('localhost:' + port + '/api/posts')
   		.end(function (err, res) {
-  			var count = 0;
-  			for (var i in res.body) {
+  			let count = 0;
+  			for (let i in res.body) {
   				count++;
   			}
   			expect(count).to.equal(8);

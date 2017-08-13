@@ -1,7 +1,17 @@
-var Post = require('./post.model');
+let Post = require('./post.model');
 
+module.exports = {
+	index,
+	getPosts,
+	updateAll,
+	deleteAll,
+	create,
+	getPost,
+	update,
+	del
+}
 //HOME PAGE
-exports.index = function(req, res, next){
+function index(req, res, next){
 	Post.find({}, null, {sort: {created_at: -1}}, function (error, posts) {
     if (error) return next(error);
     res.render('index', {user: req.session.user, posts: posts})
@@ -9,7 +19,7 @@ exports.index = function(req, res, next){
 };
 
 //GET ALL POSTS
-exports.getPosts = function (req, res, next) {
+function getPosts(req, res, next) {
 	Post.find(function (err, posts) {
 		if (err) return res.send(err);
 		res.json(posts);
@@ -17,17 +27,17 @@ exports.getPosts = function (req, res, next) {
 }
 
 //UPDATE ALL POSTS
-exports.updateAll = function (req, res, next) {
+function updateAll(req, res, next) {
 	res.send('update all');
 }
 
 //DELETE ALL POSTS
-exports.deleteAll = function (req, res, next) {
+function deleteAll(req, res, next) {
 	res.send('delete all');
 }
 
 //CREATE POST 
-exports.create = function (req, res, next) {
+function create(req, res, next) {
 	var post = new Post({
 		text: req.body.text,
 		author: req.session.user
@@ -41,7 +51,7 @@ exports.create = function (req, res, next) {
 }
 
 //GET POST
-exports.getPost = function (req, res, next) {
+function getPost(req, res, next) {
 	Post.findById(req.params.id, function (err, post) {
 		if (err) return res.send(err);
 		res.json(post);
@@ -49,7 +59,7 @@ exports.getPost = function (req, res, next) {
 }
 
 //UPDATE POST
-exports.update = function (req, res, next) {
+function update(req, res, next) {
 	Post.findById(req.params.id, function (err, post) {
 		if (err) return res.send(err);
 		post.text = req.body.text;
@@ -62,7 +72,7 @@ exports.update = function (req, res, next) {
 }
 
 //DELETE POST
-exports.del = function (req, res, next) {
+function del(req, res, next) {
 	Post.findByIdAndRemove(req.params.id, function (err, post) {
 		if (err) res.send(err);
 		res.json({message: "removed"});

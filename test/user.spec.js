@@ -1,4 +1,4 @@
-var boot = require('../src/app').boot,
+const boot = require('../src/app').boot,
   shutdown = require('../src/app').shutdown,
   port = require('../src/app').port,
   request = require('superagent').agent(),

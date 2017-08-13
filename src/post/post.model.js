@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var postSchema = new mongoose.Schema({
+let postSchema = new mongoose.Schema({
 	text: String,
 	author: Object,
 	media: {type: String, default: "text"},
@@ -9,7 +9,7 @@ var postSchema = new mongoose.Schema({
 });
 
 postSchema.pre('save', function (next) {
-	var currentDate = new Date();
+	let currentDate = new Date();
 
 	this.updated_at = currentDate;
 

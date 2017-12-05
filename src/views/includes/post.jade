@@ -9,9 +9,6 @@ div(id="compose" class="compose modal fade")
 				p(class="form-results")
 			.modal-body
 				form(method="post" action="/api/posts")
-					textarea(name="text" rows="5" class="form-control" placeholder="not implemented yet") 
+					textarea(name="text" rows="5" class="form-control" maxlength="82" placeholder="82 character limit") 
 					br
-					.pull-left
-						span(class="fa fa-lg fa-camera") &nbsp;&nbsp;
-						span(class="fa fa-lg fa-video-camera")
 					input(type="submit" value="submit" id="post" class="button button-default button-sm button-blue pull-right")

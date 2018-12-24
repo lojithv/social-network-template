@@ -3,6 +3,7 @@ var express = require('express'),
 	router = express.Router();
 	posts = require('./post/post.routes'),
 	users = require('./user/user.routes'),
+	routes = require('./app.routes'),
 	http = require('http'),
 	path = require('path'),
 	favicon = require('serve-favicon'),
@@ -23,13 +24,14 @@ app.locals.appTitle = 'The Network';
 //Express configurations
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
-//Express middleware configuration
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
 //app.use(cookieParser('3CCC4ACD-6ED1-4844-9217-82131BDCB239'));
 //exposes the res.session object in each request
 //handler and stores data
@@ -54,8 +56,11 @@ if ('development' === app.get('env')) {
 }
 
 //Pages and routes
+app.use(routes);
 app.use(users);
 app.use(posts);
+
+
 router.all('*', function (req, res) {
 	res.sendStatus(404);
 });

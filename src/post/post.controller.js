@@ -1,7 +1,7 @@
 let Post = require('./post.model');
 
 module.exports = {
-	index,
+	//index,
 	getPosts,
 	updateAll,
 	deleteAll,
@@ -10,14 +10,14 @@ module.exports = {
 	update,
 	del
 }
-//HOME PAGE
+/*HOME PAGE
 function index(req, res, next){
 	Post.find({}, null, {limit: 8, sort: {created_at: -1}}, function (error, posts) {
     if (error) return next(error);
     res.render('index', {user: req.session.user, posts: posts})
   });
 };
-
+*/
 //GET ALL POSTS
 function getPosts(req, res, next) {
 	Post.find(function (err, posts) {

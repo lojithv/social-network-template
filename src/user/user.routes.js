@@ -5,11 +5,11 @@ const authorize = require('../app.routes').authorize;
 
 module.exports = router;
 
-router.get('/signup', user.signup);
-router.get('/login', user.login);
+//router.get('/signup', user.signup);
+//router.get('/login', user.login);
 router.post('/login', user.authenticate);
 router.get('/logout', user.logout);
-router.get('/dashboard', authorize, user.showDashboard);
+//router.get('/dashboard', authorize, user.showDashboard);
 router.get('/users', user.showAll);
 router.get('/:user', user.show);
 router.post('/signup', user.add);

@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.14.1",
     "cookie-parser": "^1.4.0",
+    "ejs": "^2.6.1",
     "errorhandler": "^1.4.2",
     "everyauth": "^0.4.9",
     "express": "^4.13.3",
@@ -22,9 +24,9 @@
     "mongodb": "^2.0.45",
     "mongoose": "^4.1.10",
     "mongoskin": "^2.0.0",
-    "morgan": "^1.6.1",
+    "morgan": "^1.9.1",
     "serve-favicon": "^2.3.0",
-    "stylus": "^0.52.4",
+    "stylus": "^0.54.5",
     "validator": "^4.1.0"
   },
   "devDependencies": {

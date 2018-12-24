@@ -5,7 +5,32 @@
 	</head>
 	<body>
 		<%- include('../includes/header'); %>
-		<h2>Signup page</h2>
+		<div class="section text-center">
+			<div class="container">
+				<div class="form">
+					<form method="POST", action="signup" class="light-theme">
+						<div class="container">
+							<div class="form-header">
+								<p class="lead">Signup</p>
+								<p></p>
+							</div>
+							<div class="form-group">
+								<input type="text" name="username" placeholder="Username">
+							</div>
+							<div class="form-group">
+								<input type="text" name="email" placeholder="Email address">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<input type="submit" value="submit" name="submit" class="button button-default button-pill button-dark btn-block">
+							</div>
+					</form>
+				</div>
+					<p>Already have an account? <a href="/login", class="button button-default button-pill button-dark-o">Login</a></p>
+			</div>
+		</div>
 		<%- include('../includes/footer'); %>
 	</body>
 </html>

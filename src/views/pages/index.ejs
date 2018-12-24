@@ -5,14 +5,31 @@
 	</head>
 	<body>
 		<%- include('../includes/header'); %>
-		<h2>Home page</h2>
-		<ul class="post-list">
-			<% posts.forEach(function(post) { %>
-				<li>
-					<%= post.text %>
-				</li>
-			<% }) %>
-		</ul>
+		<div class="page-header bg home-img dark-theme">
+			<div class="container text-center">
+				<h1><%= appTitle %></h1>
+				<p class="lead">A Twitter Clone made with Node.js</p>
+			</div>
+		</div>
+		<div class="section">
+			<div class="col-sm-6 offset-md-3">
+				<ul class="post-list">
+					<% posts.forEach(function(post) { %>
+						<li>
+							<div class="post">
+								<div class="post-primary-content">
+									<div class="post-avatar">
+										<img src="<%= post.author.avatar || 'img/avatar-black.png' %>" />
+									</div>
+									<h5><%= post.author.username %></h5>
+									<p class="post-text"><%= post.text %></p>
+								</div>
+							</div>
+						</li>
+					<% }) %>
+				</ul>
+			</div>
+		</div>
 		<%- include('../includes/footer'); %>
 	</body>
 </html>

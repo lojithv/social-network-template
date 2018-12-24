@@ -21,6 +21,7 @@ var express = require('express'),
 
 var app = express();
 app.locals.appTitle = 'The Network';
+app.locals.admin = false;
 //Express configurations
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));

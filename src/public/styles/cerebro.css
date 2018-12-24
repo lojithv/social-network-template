@@ -703,19 +703,6 @@ form {
 /* =================================
 	MENUS
 ==================================== */
-/* INNER POSITIONING FOR
-HORIZONTAL NAV */
-.nav-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.nav-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 
 .nav-bottom {
   position: absolute;

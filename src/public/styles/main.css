@@ -194,6 +194,10 @@ ul.dropdown-menu{
 	POST
 ============================== */
 
+.post-list {
+	list-style: none;
+}
+
 .post{
 	border: 1px solid #b5bdc1;
 	border-radius: 4px;

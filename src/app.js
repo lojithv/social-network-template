@@ -55,11 +55,10 @@ if ('development' === app.get('env')) {
 	app.use(errorHandler());
 }
 
-//Pages and routes
+//routes must come first
 app.use(routes);
 app.use(users);
 app.use(posts);
-
 
 router.all('*', function (req, res) {
 	res.sendStatus(404);

@@ -1,4 +1,7 @@
 const axios = require('axios');
+const host = process.env.HOST || '127.0.0.1';
+const port = process.env.PORT || 3000;
+
 module.exports = {
 	home,
 	login,
@@ -7,7 +10,7 @@ module.exports = {
 }
 
 function home(req, res, next) {
-	axios.get('http://localhost:3000/api/index')
+	axios.get(host + ':' + port + '/api/index')
 	.then(function(posts) {
 		res.render('pages/index');
 	})
@@ -25,7 +28,7 @@ function signup(req, res, next) {
 }
 
 function users(req, res, next) {
-	axios.get('http://localhost:3000/api/users')
+	axios.get(host + ':' + port + '/api/users')
 	.then(function(users) {
 		res.render('pages/user-list', {users: users.data});
 	})

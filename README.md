@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/albertaw/social-network-template.svg?branch=master)](https://travis-ci.org/albertaw/social-network-template)
-
 The Network
 -----------------------------
 
@@ -42,24 +40,4 @@ or
 mocha test
 ```
 
-API
----------------------------- 
-
-### Users
-
-- get /users
-- get /:user
-- post /signup
-- post /:user'
-- delete /:user
-
-### Posts
-
-- get /api/posts
-- put /api/posts
-- delete /api/posts
-- post /api/posts
-- get /api/posts/:id
-- put /api/posts/:id
-- delete /api/posts/:id
 

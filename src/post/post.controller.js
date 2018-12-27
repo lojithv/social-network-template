@@ -1,7 +1,7 @@
 let Post = require('./post.model');
 
 module.exports = {
-	//index,
+	index,
 	getPosts,
 	updateAll,
 	deleteAll,
@@ -10,15 +10,14 @@ module.exports = {
 	update,
 	del
 }
-/*HOME PAGE
+
 function index(req, res, next){
-	Post.find({}, null, {limit: 8, sort: {created_at: -1}}, function (error, posts) {
-    if (error) return next(error);
-    res.render('index', {user: req.session.user, posts: posts})
+	Post.find({}, null, {limit: 6, sort: {created_at: -1}}, function (error, posts) {
+    if (error) return res.send(error.message);
+    res.json(posts);
   });
 };
-*/
-//GET ALL POSTS
+
 function getPosts(req, res, next) {
 	Post.find(function (err, posts) {
 		if (err) return res.send(err);
@@ -26,31 +25,29 @@ function getPosts(req, res, next) {
 	});
 }
 
-//UPDATE ALL POSTS
 function updateAll(req, res, next) {
 	res.send('update all');
 }
 
-//DELETE ALL POSTS
 function deleteAll(req, res, next) {
 	res.send('delete all');
 }
 
-//CREATE POST 
 function create(req, res, next) {
 	var post = new Post({
 		text: req.body.text,
-		author: req.session.user
+		author: {
+			username: req.body.author
+		}
 	});
 
 	post.save(function (err, post) {
 		if (err) return res.send(err.message);
 		//res.json(post);
-		res.redirect('/dashboard');
+		res.redirect('/');
 	});
 }
 
-//GET POST
 function getPost(req, res, next) {
 	Post.findById(req.params.id, function (err, post) {
 		if (err) return res.send(err);
@@ -58,7 +55,6 @@ function getPost(req, res, next) {
 	});
 }
 
-//UPDATE POST
 function update(req, res, next) {
 	Post.findById(req.params.id, function (err, post) {
 		if (err) return res.send(err);
@@ -71,7 +67,6 @@ function update(req, res, next) {
 	});
 }
 
-//DELETE POST
 function del(req, res, next) {
 	Post.findByIdAndRemove(req.params.id, function (err, post) {
 		if (err) res.send(err);

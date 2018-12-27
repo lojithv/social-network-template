@@ -21,7 +21,7 @@
     "express-session": "^1.11.3",
     "jade": "^1.11.0",
     "method-override": "^2.3.5",
-    "mongodb": "^2.0.45",
+    "mongodb": "^2.2.36",
     "mongoose": "^4.1.10",
     "mongoskin": "^2.0.0",
     "morgan": "^1.9.1",

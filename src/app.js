@@ -22,12 +22,13 @@ var express = require('express'),
 var app = express();
 app.locals.appTitle = 'The Network';
 app.locals.admin = false;
+app.locals.error = null;
 //Express configurations
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'frontend-react/build')));
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,11 +56,18 @@ app.use(function (req, res, next) {
 if ('development' === app.get('env')) {
 	app.use(errorHandler());
 }
-
+//must go before routes to work
+//https://enable-cors.org/server_expressjs.html
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 //routes must come first
 app.use(routes);
-app.use(users);
 app.use(posts);
+app.use(users);
+
 
 router.all('*', function (req, res) {
 	res.sendStatus(404);

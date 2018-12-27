@@ -3,8 +3,6 @@ const Post = require('../post/post.model');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-  signup,
-  login,
   logout,
   add,
   authenticate,
@@ -15,13 +13,6 @@ module.exports = {
   showDashboard
 }
 
-function signup(req, res, next) {
-  res.render('signup');
-}
-
-function login(req, res, next) {
-  res.render('login');
-};
 
 function logout(req, res, next) {
   //clear the session
@@ -31,7 +22,7 @@ function logout(req, res, next) {
 
 function add(req, res, next) {
   if(!req.body.username || !req.body.email || !req.body.password) {
-    return res.render('signup', {err: 'Enter name, email, and password'});
+    return res.render('pages/signup', {error: 'Enter name, email, and password'});
   }
  
   User.findOne({username: req.body.username}, function (err, usrData) {
@@ -43,7 +34,7 @@ function add(req, res, next) {
           user.email = req.body.email;
           user.password = hash;
           user.save(function (err, user) {
-            if (err) return res.send('signup', {error: err});
+            if (err) return res.send('pages/signup', {error: err});
             req.session.user = user;
             req.session.admin = user.admin
             res.redirect('/dashboard');
@@ -51,7 +42,7 @@ function add(req, res, next) {
         });
       });
     } else {
-      res.render('signup', {error: 'User already exists'});
+      res.render('pages/signup', {error: 'User already exists'});
     }
   });
 
@@ -59,14 +50,14 @@ function add(req, res, next) {
 
 function authenticate(req, res, next) {
   if (!req.body.email || !req.body.password) {
-    return res.render('login', {error: 'Please enter your email and password.'});
+    return res.redirect('/login', {error: 'Please enter your email and password.'});
   }
   User.findOne({email:req.body.email}, function (err, user) {
     if (err) return next(err);
-    if (!user) return res.render('login', {error: 'Incorrect email and password combination'});
+    if (!user) return res.render('pages/login', {error: 'Incorrect email and password combination'});
     bcrypt.compare(req.body.password, user.password, function (err, authorized) {
       if (!authorized) {
-        return res.render('login', {error: 'Incorrect email and password combination'});
+        return res.render('pages/login', {error: 'Incorrect email and password combination'});
       } else {
         req.session.user = user;
         req.session.admin = user.admin
@@ -121,14 +112,15 @@ function show(req, res, next) {
 function showAll(req, res, next) {
   User.find({}, function (err, users) {
     if (err) return next(err);
-    res.render('userlist', {user: req.session.user, users: users})
+    //res.render('userlist', {user: req.session.user, users: users})
+    res.json(users);
   });
 }
 
 function showDashboard(req, res, next) {
 	User.findOne({email:req.session.user.email}, function(err, user) {
     	if (err) return next(err);
-    	res.render('dashboard', {user: user});
+    	res.render('pages/dashboard', {user: user});
     	//res.send({user:req.session.user.name});
   });
 }

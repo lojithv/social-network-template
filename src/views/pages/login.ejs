@@ -8,11 +8,11 @@
 		<div class="section text-center">
 			<div clas="container">
 				<div class="form">
-					<form method="POST", action="/login" class="light-theme">
+					<form method="POST", action="/auth" class="light-theme">
 						<div class="container">
 							<div class="form-header">
 								<p class="lead">Log in to your account</p>
-								<p></p>
+								<p><%= error %></p>
 							</div>
 							<div class="form-group">
 								<input type="text", name="email", placeholder="Email address" />

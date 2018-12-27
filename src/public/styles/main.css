@@ -135,22 +135,12 @@
 	margin-right: .5em;
 }
 
-.dropdown ul li{
-	margin: 0;
-	line-height: 100%;
-	display: block;
-	color: #697074;
-}
-
 .dropdown-menu {
-	left: -100px;
-	min-width: 100px;
-}
-ul.dropdown-menu{
-	padding: 1em 0;
+	padding: 1em;
+	left:-1em;
 }
 
-.dropdown-menu.light-theme li a{
+.dropdown-menu.light-theme a{
 	color: #697074;
 }
 

@@ -5,8 +5,9 @@ const authorize = require('../app.routes').authorize;
 
 module.exports = router;
 
-//router.get('/', post.index);
+
 //router.all('/api/*', authorize);
+router.get('/api/index', post.index);
 router.get('/api/posts', post.getPosts);
 router.put('/api/posts', post.updateAll);
 router.delete('/api/posts', post.deleteAll)

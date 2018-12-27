@@ -5,18 +5,9 @@ const app = require('./app.controller');
 module.exports = router;
 
 
-router.get('/', app.index);
+router.get('/', app.home);
 router.get('/login', app.login);
 router.get('/signup', app.signup);
+router.get('/users', app.users)
 
 
-
-/*authorization middleware
-function authorize (req, res, next) {
-	if (req.session && req.session.admin) {
-		return next();
-	} else {
-		return res.sendStatus(401);
-	}
-};
-*/

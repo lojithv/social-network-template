@@ -24,20 +24,7 @@ make db
 
 ### Launch app
 ```bash
-make start
-```
-or
-```bash
-node app
-```
-
-### Testing
-```bash
-make test
-```
-or
-```bash
-mocha test
+npm start
 ```
 
 

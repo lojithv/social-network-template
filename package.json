@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
+    "start": "node ./src/app.js",
     "test": "mocha test"
   },
   "repository": "https://github.com/albertaw/social-network-template",

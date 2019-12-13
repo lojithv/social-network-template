@@ -1,6 +1,7 @@
 const post = require('./post.controller');
 const express = require('express');
 const router = express.Router();
+const authorize = require('../app.routes').authorize;
 
 module.exports = router;
 

@@ -1,8 +1,9 @@
 // your application's code
-const express = require('express'),
+var express = require('express'),
 	router = express.Router();
 	posts = require('./post/post.routes'),
 	users = require('./user/user.routes'),
+	routes = require('./app.routes'),
 	http = require('http'),
 	path = require('path'),
 	favicon = require('serve-favicon'),
@@ -18,7 +19,7 @@ const express = require('express'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override');
 
-const app = express();
+var app = express();
 app.locals.appTitle = 'The Network';
 app.locals.admin = false;
 app.locals.error = null;
@@ -27,7 +28,7 @@ app.set('port', process.env.PORT || 3000);
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, '../frontend-react/build')));
+app.use(express.static(path.join(__dirname, 'frontend-react/build')));
 app.use(favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -51,6 +52,7 @@ app.use(function (req, res, next) {
 });
 
 
+
 if ('development' === app.get('env')) {
 	app.use(errorHandler());
 }
@@ -61,10 +63,13 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
+//routes must come first
+app.use(routes);
 app.use(posts);
 app.use(users);
-app.get('*', function (req, res) {
+
+
+router.all('*', function (req, res) {
 	res.sendStatus(404);
 });
 

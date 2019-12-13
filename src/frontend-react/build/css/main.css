@@ -1,0 +1,72 @@
+.home-bg {
+  background-image: url('../img/home.jpg');
+  color: #fff;
+}
+
+.transparent,
+.dark-theme.transparent,
+.light-theme.transparent {
+  background-color: transparent;
+}
+
+.dark-theme {
+  /*background-color: #171717;*/
+  background-color: #1F1F1F;
+  color: #fff;
+}
+
+.light-theme {
+  background-color: #fff;
+  color: #000;
+}
+
+.section {
+  /*text-align: center;*/
+  padding: 6em 0;
+  position: relative;
+  border-bottom: 1px solid #E9E9E9;
+}
+
+.section.dark-theme {
+  border-bottom: none;
+}
+
+/* =================================
+  LAYOUTS
+==================================== */
+.bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.hero-bg {
+  overflow: hidden;
+  min-height: 100%;
+  /* makes full screen for mobile*/
+}
+
+.hero-wrapper {
+  position: absolute;
+  /*adds scrollbar*/
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* PAGE HEADER */
+.page-header {
+  padding: 12em 0;
+  margin: 0;
+  border-bottom: none;
+  position: relative;
+}
+
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 8em 0;
+  }
+}

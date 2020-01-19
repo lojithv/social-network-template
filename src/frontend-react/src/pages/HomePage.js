@@ -12,7 +12,7 @@ class HomePage extends Component {
 	}
 
 	componentDidMount() {
-		console.log('hello');
+		
 		axios.get('/api/index')
 		.then(response => {
 			console.log(response);

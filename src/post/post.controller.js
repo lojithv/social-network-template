@@ -1,4 +1,5 @@
-let Post = require('./post.model');
+const Post = require('./post.model');
+
 
 module.exports = {
 	index,
@@ -34,23 +35,18 @@ function deleteAll(req, res, next) {
 }
 
 function create(req, res, next) {
-	var post = new Post({
-		text: req.body.text,
-		author: {
-			username: req.body.author
-		}
-	});
+	var post = new Post(req.body);
 
-	post.save(function (err, post) {
-		if (err) return res.send(err.message);
-		//res.json(post);
-		res.redirect('/');
+	post.save(function(err, doc) {
+		if (err) return res.status(400).send(err);
+		res.send(doc);
 	});
 }
 
 function getPost(req, res, next) {
 	Post.findById(req.params.id, function (err, post) {
-		if (err) return res.send(err);
+		if(!post) return res.status(404).send(err);
+		if (err) return res.status(400).send();
 		res.json(post);
 	});
 }
@@ -70,6 +66,6 @@ function update(req, res, next) {
 function del(req, res, next) {
 	Post.findByIdAndRemove(req.params.id, function (err, post) {
 		if (err) res.send(err);
-		res.json({message: "removed"});
+		res.json(post);
 	});
 }

@@ -1,9 +1,9 @@
-const boot = require('../src/app').boot,
-  shutdown = require('../src/app').shutdown,
-  port = require('../src/app').port,
+const boot = require('../app').boot,
+  shutdown = require('../app').shutdown,
+  port = require('../app').port,
   request = require('superagent').agent(),
   expect = require('chai').expect,
-  seedUsers = require('../src/db/users.json');
+  seedUsers = require('../db/users.json');
 
 describe('USER', function () {
   
@@ -11,18 +11,13 @@ describe('USER', function () {
     boot();
   });
 
+  after(function () {
+    shutdown();
+  });
+
   it('gets home page route',function (done){
     request
       .get('http://localhost:' + port)
-      .end(function(err, res){
-        expect(res.status).to.equal(200);
-        done();
-    });
-  });
-
-  it('gets login route', function (done) {
-    request
-      .get('http://localhost:' + port + '/login')
       .end(function(err, res){
         expect(res.status).to.equal(200);
         done();
@@ -171,10 +166,6 @@ describe('USER', function () {
         done();
       });
 
-  });
-  
-  after(function () {
-    shutdown();
   });
 
 });

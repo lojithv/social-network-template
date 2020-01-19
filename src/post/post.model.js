@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 let postSchema = new mongoose.Schema({
-	text: {type: String, maxlength: 82},
-	author: Object,
+	text: {type: String, maxlength: 82, required: true},
+	author: {type: String, required: true},
 	media: {type: String, default: "text"},
 	created_at: Date,
 	updated_at: Date

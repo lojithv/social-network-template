@@ -1,112 +1,152 @@
-const boot = require('../src/app').boot,
-  shutdown = require('../src/app').shutdown,
-  port = require('../src/app').port,
+const boot = require('../app').boot,
+  shutdown = require('../app').shutdown,
+  port = require('../app').port,
   request = require('superagent').agent(),
-  expect = require('chai').expect;
+  axios = require('axios'),
+  expect = require('chai').expect,
+  Post = require('./post.model'),
+  {ObjectID} = require('mongodb');
 
-let id,
-  post = {
-  	text: 'This is a test',
+describe('POST', function() {
+  let id;
+  const post = {
+    text: 'This is a test',
     author: 'admin',
-  },
-  user = {
-  	email: "admin@example.com",
-  	password: "admin"
-  };
+  }
+  const posts = [{
+    _id: new ObjectID(),
+    text: 'post 1',
+    author: 'author 1'
+  }, {
+    _id: new ObjectID(),
+    text: 'post 2',
+    author: 'author 2'
+  }];
 
-describe('POST', function () {
-	before(function (done) {
+	before(function () {
     boot();
-    request
-      .post('http://localhost:' + port + '/login')
-      .send(user)
-      .end(function (err, res) {
-        done();
-      });
+    
   });
 
-  it('get posts', function (done) {
-  	request
-  		.get('localhost:' + port + '/api/posts')
-  		.send(user)
-  		.end(function (err, res) {
-  			let count = 0;
-  			for (let i in res.body) {
-  				count++;
-  			}
-  			expect(count).to.equal(8);
-  			expect(res.status).to.equal(200);
-  			done();
-  		});
-  });
-
-	xit('create post', function (done) {
-		request
-			.post('localhost:' + port + '/api/posts')
-			.send(post)
-			.end(function (err, res) {
-				id = res.body._id;
-				expect(res.body.text).to.equal(post.text);
-				expect(res.body.author.username).to.equal('admin');
-				expect(res.body.media).to.equal("text");
-        expect(res.status).to.equal(200);
-				done();
-			});
-	});
-
-	xit('get post', function (done) {
-		request
-  		.get('localhost:' + port + '/api/posts/' + id)
-  		.end(function (err, res) {
-  			expect(res.status).to.equal(200);
-  			done();
-  		});
-	});
-
-	xit('update post', function (done) {
-		request
-			.put('localhost:' + port + '/api/posts/' + id)
-			.send({text: 'hello world'})
-			.end(function (err, res) {
-				expect(res.body.text).to.equal('hello world');
-				expect(res.status).to.equal(200);
-				done();
-			});
-	});
-
-	xit('delete post', function (done) {
-		request
-			.del('localhost:' + port + '/api/posts/' + id)
-			.end(function (err, res) {
-				expect(res.status).to.equal(200);
-				done();
-			});
-	});
-
-	xit('check for deleted post', function (done) {
-		request
-  		.get('localhost:' + port + '/api/posts/' + id)
-  		.end(function (err, res) {
-  			expect(res.body).to.equal(null);
-  			done();
-  		});
-	});
-
-	xit('ensure only 8 posts', function (done) {
-		request
-  		.get('localhost:' + port + '/api/posts')
-  		.end(function (err, res) {
-  			let count = 0;
-  			for (let i in res.body) {
-  				count++;
-  			}
-  			expect(count).to.equal(8);
-  			expect(res.status).to.equal(200);
-  			done();
-  		});
-  	});
+  beforeEach(function(done) {
+    Post.remove({})
+    .then(function() {
+      return Post.insertMany(posts);
+    })
+    .then(function() {
+      done();
+    })
+  })
 
   after(function () {
     shutdown();
   });
+
+  it('should create a new post', async function () {
+    let response;
+
+    try {
+      response = await axios.post('http://localhost:' + port + '/api/posts', post);
+
+      id =  response.data._id;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      expect(response.data.text).to.equal(post.text);
+      expect(response.data.author).to.equal(post.author);
+    }
+    
+  });
+
+  it('should not create a post given invalid body data', function (done) {
+    axios.post('http://localhost:' + port + '/api/posts')
+    .then(function(response) {
+      expect(response.status).to.equal(400);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+    .finally(function() {
+      done();
+    });
+  });
+
+  it('get posts', async function() {
+    let response;
+    try {
+      response = await axios.get('http://localhost:' + port + '/api/posts');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      const count = response.data.length;
+
+      expect(count).to.equal(2);
+    }
+  });
+
+	it('get post', async function () {
+		let response;
+    try {
+      response = await axios.get('http://localhost:' + port + '/api/posts/' + posts[0]._id.toHexString());
+    } catch (error) {
+      console.log(error);
+    } finally {
+      expect(response.data.text).to.equal(posts[0].text);
+    }
+  		
+	});
+
+  it('should return 404 if post not found when trying to get', function (done) {
+    const id = new ObjectID().toHexString();
+    axios.get('http://localhost:' + port + '/api/posts/' + id)
+    .then(function(response){
+      expect(response.status).to.equal(404);
+    })
+    .catch(function(error) {
+      console.log(error);
+    }) 
+    .finally(function() {
+      done();
+    });
+    
+  });
+
+	it('update post', async function () {
+    let response;
+		try {
+      response = await axios.put('http://localhost:' + port + '/api/posts/' + posts[0]._id.toHexString(), {text: 'hello world'});
+    } catch(error) {
+      console.log(error);
+    } finally {
+      expect(response.data.text).to.equal('hello world');
+    }
+			
+	});
+
+	it('delete post', async function () {
+		let response;
+    try {
+      response = await axios.delete('http://localhost:' + port + '/api/posts/' + posts[0]._id.toHexString());
+    } catch(error) {
+      console.log(error);
+    } finally {
+      expect(response.data.text).to.equal('post 1');
+    }
+	});
+
+	it('should return 404 if post not found when trying to remove', function (done) {
+    const id = new ObjectID().toHexString();
+    
+    axios.get('http://localhost:' + port + '/api/posts/' + id)
+    .then(function(response) {
+      expect(response.status).to.equal(404);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+    .finally(function() {
+      done();
+    });
+	});
+  
 });

@@ -4,7 +4,7 @@ function Footer() {
 	return (
 		<div className="py-5 text-center">
 			<div className="container">
-				<p>&copy; 2018 Alberta Williams</p>
+				<p><a href="https://github.com/albertaw/social-network-template">Github</a></p>
 			</div>
 		</div>
 	)

@@ -19,11 +19,11 @@ class Modal extends React.Component {
 			        	
 			        	<div class="form-group">
 			        		<label>Name</label>
-			        		<input type="text" name="author"  class="form-control" onChange={this.props.handleAuthorChange} />
+			        		<input type="text" name="author"  class="form-control" minlength="1" maxlength="82" onChange={this.props.handleAuthorChange} />
 			        	</div>
 			        	<div class="form-group">
 			        		<label>Text</label>
-			        		<textarea onChange={this.props.handleTextChange} name="text" rows="4" class="form-control" maxlength="82" placeholder="82 character limit"></textarea>
+			        		<textarea onChange={this.props.handleTextChange} name="text" rows="4" class="form-control" minlength="1" maxlength="82" placeholder="82 character limit"></textarea>
 			        	</div>
 			        	<div class="form-group float-right">
 			        		<input type="submit" value="submit" id="post" class="btn btn-primary" />

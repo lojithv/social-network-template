@@ -39,6 +39,7 @@ describe('POST', function() {
   })
 
   after(function () {
+    Post.remove({});
     shutdown();
   });
 

@@ -7,7 +7,7 @@ function PostList(props) {
 	const posts = props.posts.map((post) =>
 		<PostItem
 			key={post._id}
-			author={post.author.username}
+			author={post.author}
 			text={post.text} />
 	);
 

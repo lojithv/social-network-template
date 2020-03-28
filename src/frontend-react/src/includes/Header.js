@@ -10,7 +10,7 @@ function Header() {
 				</div>
 				<ul className="navbar-nav float-right">
 					<li className="nav-item"><button className="btn btn-outline-light" data-toggle="modal" data-target="#postModal">New Post</button></li>
-					<li className="nav-item"><Link className="btn btn-outline-light" to="/login">Login</Link></li>
+					{/*<li className="nav-item"><Link className="btn btn-outline-light" to="/login">Login</Link></li> */}
 				</ul>
 			</div>
 		</div>
